@@ -27,6 +27,6 @@ app.factory('infoService', [function () {
     return {
         success: success,
         error: error,
-        warning : warning
+        warning: warning
     }
 }]);
