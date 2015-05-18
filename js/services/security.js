@@ -5,10 +5,7 @@ app.factory('security', function ($http, $q, baseUrl) {
             username: username,
             password: password
         }).success(function (data) {
-
-            //todo make this work
-            saveUserSession({username:data.userName, password:'' , authToken:data.access_token});
-
+            saveUserSession({username:data.userName, authToken:data.access_token});
             deffer.resolve(data);
         }).error(function (error) {
             deffer.reject(error);
@@ -36,6 +33,20 @@ app.factory('security', function ($http, $q, baseUrl) {
 
     function register(username, fullName, email, password, repeatedPass){
         // todo implement registration
+        var deffer = $q.defer();
+        $http.post(baseUrl + '/users/register', {
+            username: username,
+            password: password,
+            confirmPassword: repeatedPass,
+            name: fullName,
+            email: email
+        }).success(function (data) {
+            saveUserSession({username:data.userName, authToken:data.access_token});
+            deffer.resolve(data);
+        }).error(function (error) {
+            deffer.reject(error);
+        });
+        return deffer.promise;
     }
 
     function getLoggedUser(){
