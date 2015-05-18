@@ -1,9 +1,19 @@
-app.factory('security', function ($http) {
+app.factory('security', function ($http, $q, baseUrl) {
     function login(username, password){
-        //todo implement login
+        var deffer = $q.defer();
+        $http.post(baseUrl + '/users/login', {
+            username: username,
+            password: password
+        }).success(function (data) {
 
-        // todo on success login save user to session
-        saveUserSession({username:'', authToken:''});
+            //todo make this work
+            saveUserSession({username:data.userName, password:'' , authToken:data.access_token});
+
+            deffer.resolve(data);
+        }).error(function (error) {
+            deffer.reject(error);
+        });
+        return deffer.promise;
     }
 
     function logout(){
@@ -11,9 +21,9 @@ app.factory('security', function ($http) {
     }
 
     function isUserLogged(){
-        var currentUser = sessionStorage.getItem('loggedUser');
+        var currentUser = getLoggedUser();
         if(!currentUser){
-            currentUser = localStorage.getItem('loggedUser');
+            currentUser = JSON.parse(localStorage.getItem('loggedUser'));
             if(currentUser){
                 login(currentUser.username, currentUser.password);
                 return true;
@@ -29,6 +39,10 @@ app.factory('security', function ($http) {
     }
 
     function getLoggedUser(){
+        var strUser = sessionStorage.getItem('loggedUser');
+        if(strUser){
+            return JSON.parse(strUser);
+        }
         // todo read from session storage
     }
 
