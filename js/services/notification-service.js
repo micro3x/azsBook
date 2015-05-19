@@ -29,4 +29,5 @@ app.factory('infoService', [function () {
         error: error,
         warning: warning
     }
+
 }]);
