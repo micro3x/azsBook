@@ -20,7 +20,7 @@ app.controller('editUserController', function ($scope, $location, $route, securi
         if ($scope.backImage) {
             this.user.coverImageData = $scope.backImage;
         }
-        user.updateInfo(this.user).then(
+        user.updateMyInfo(this.user).then(
             function (success) {
                 infoService.success('User Profile Saved')
                 $route.reload();
