@@ -1,0 +1,18 @@
+<h1>News Feed</h1>
+<ul>
+    <li ng-repeat="post in feedData">
+        <div class="author">
+            <img src="{{post.author.profileImageData}}" alt="authorPicture"/>
+            <strong>{{post.author.name}}</strong>
+        </div>
+        added post on {{post.date}} to
+        <div class="wallOwner">
+            <img src="{{post.wallOwner.profileImageData}}" alt="authorPicture"/>
+            <strong>{{post.wallOwner.name}}</strong>
+        </div>
+        <div class="post">
+            <p>{{post.postContent}}</p>
+            <p><span>likes - ({{post.likesCount}})</span></p>
+        </div>
+    </li>
+</ul>

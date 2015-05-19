@@ -9,8 +9,8 @@ app.factory('user', function ($resource, $http, baseUrl) {
         });
 
     var resourceMe = $resource(
-        baseUrl + '/me',
-        {},
+        baseUrl + '/me/:params',
+        {params: '@param'},
         {
             update: {
                 method: 'PUT'
@@ -29,14 +29,22 @@ app.factory('user', function ($resource, $http, baseUrl) {
         return resourceMe.get().$promise;
     }
 
-    function updateInfo(user){
-        return resourceMe.update(user).$promise;
+    function updateInfo(user) {
+        return resourceMe.update({params: ''}, user).$promise;
     }
+
+    function getNewsFeed(fromPost, size) {
+        var count = size || 5;
+        var startPost = fromPost || '';
+        return resourceMe.query({params: 'feed?StartPostId=' + startPost + '&PageSize=' + count}).$promise;
+    }
+
 
     return {
         logout: logout,
         getFullUserInfo: getFullUserInfo,
         getMyFullInfo: getMyFullInfo,
-        updateInfo:updateInfo
+        updateInfo: updateInfo,
+        getNewsFeed: getNewsFeed,
     }
 });
