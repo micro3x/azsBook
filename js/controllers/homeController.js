@@ -1,4 +1,4 @@
-app.controller('homeController', function ($scope, $location, $route, security, infoService) {
+app.controller('homeController', function ($scope, $location, $route, security, infoService, user) {
 
     $scope.loginUser = '';
     $scope.loginPass = '';
@@ -8,7 +8,7 @@ app.controller('homeController', function ($scope, $location, $route, security, 
             function (user) {
                 infoService.success('Welcome : ' + user.userName);
                 $location.path('/');
-                window.location.reload(false);
+                $route.reload();
             },
             function (error) {
                 infoService.error(error.error_description);
@@ -32,12 +32,26 @@ app.controller('homeController', function ($scope, $location, $route, security, 
             function (user) {
                 infoService.success('Welcome : ' + user.userName);
                 $location.path('/');
-                window.location.reload(false);
+                $route.reload();
             },
             function (error) {
                 infoService.error(error.message);
             }
         );
+    }
+
+    $scope.logout = function () {
+        user.logout().then(
+            function (success) {
+                security.clearUserSession();
+                $location.path('/');
+                $route.reload();
+            },
+            function (error) {
+                infoService.error(error.statusText);
+            }
+        );
+
     }
 
 

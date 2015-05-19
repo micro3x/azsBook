@@ -13,8 +13,9 @@ app.factory('security', function ($http, $q, baseUrl) {
         return deffer.promise;
     }
 
-    function logout(){
-        //todo implement logout
+    function clearUserSession(){
+        $http.defaults.headers.common['Authorization'] = '';
+        sessionStorage.removeItem('loggedUser');
     }
 
     function isUserLogged(){
@@ -62,17 +63,16 @@ app.factory('security', function ($http, $q, baseUrl) {
     }
 
     function saveUserSession(user){
+        $http.defaults.headers.common['Authorization'] = 'Bearer ' + user.authToken;
         sessionStorage.setItem('loggedUser', JSON.stringify(user));
     }
 
     return {
         login: login,
-        logout:logout,
+        clearUserSession:clearUserSession,
         register: register,
         isUserLogged: isUserLogged,
         getLoggedUser: getLoggedUser,
         rememberUser: rememberUser
-
-
     }
 });
