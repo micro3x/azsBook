@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-
-    </body>
-</html>
+<header ng-include="'partials/user/userHeader.html'"></header>
+<div ng-controller="editUserController">
+    <form class="col-sm-4 col-sm-offset-4">
+        <div class="form-group">
+            <label for="name">Full name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" ng-model="user.username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
+        </div>
+        <div class="form-group">
+            <img src="{{user.profileImageData}}" alt="profile-picture" id="current-profile-image"/>
+            <label for="avatar">Change Avatar</label>
+            <input type="file" id="avatar">
+            <p class="help-block">Select a picture less then 128kb</p>
+        </div>
+        <div class="form-group">
+            <label for="background">Change Background</label>
+            <input type="file" id="background">
+            <p class="help-block">Selected picture must be less then 1MB</p>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>

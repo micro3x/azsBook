@@ -73,6 +73,7 @@ app.factory('security', function ($http, $q, baseUrl) {
         register: register,
         isUserLogged: isUserLogged,
         getLoggedUser: getLoggedUser,
-        rememberUser: rememberUser
+        rememberUser: rememberUser,
+        saveUserSession: saveUserSession
     }
 });

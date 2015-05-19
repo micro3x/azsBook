@@ -8,15 +8,15 @@ app.config(
             templateUrl : function () {
                 var loggedUser = sessionStorage.getItem('loggedUser');
                 if(loggedUser) {
-                    return 'partials/pages/userHome.html';
+                    return 'partials/user/userHome.html';
                 }
                 return 'partials/pages/guestHome.html';
             },
             controller: 'homeController' //todo determine if user is logged
         });
 
-        $routeProvider.when('/home', {
-            templateUrl: 'partials/pages/userHome.html',
+        $routeProvider.when('/editUser', {
+            templateUrl: 'partials/user/editUser.html',
             controller: 'homeController' //todo determine if user is logged
         });
 

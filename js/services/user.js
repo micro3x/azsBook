@@ -1,5 +1,5 @@
 app.factory('user', function ($resource, $http, baseUrl) {
-    var resource = $resource(
+    var resourceUsers = $resource(
         baseUrl + '/users/:id',
         {id: '@id'},
         {
@@ -8,12 +8,31 @@ app.factory('user', function ($resource, $http, baseUrl) {
             }
         });
 
+    var resourceMe = $resource(
+        baseUrl + '/me/:id',
+        {id: '@id'},
+        {
+            update: {
+                method: 'PUT'
+            }
+        });
+
     function logout() {
-        return resource.save({id: 'logout'}).$promise;
+        return resourceUsers.save({id: 'logout'}).$promise;
+    }
+
+    function getFullUserInfo(username) {
+        return resourceUsers.get({id: username}).$promise;
+    }
+
+    function getMyFullInfo() {
+        return resourceMe.get().$promise;
     }
 
 
     return {
-        logout: logout
+        logout: logout,
+        getFullUserInfo: getFullUserInfo,
+        getMyFullInfo: getMyFullInfo
     }
 });

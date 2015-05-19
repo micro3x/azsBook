@@ -1,5 +1,9 @@
 app.controller('homeController', function ($scope, $location, $route, security, infoService, user) {
 
+    if(security.isUserLogged()){
+        security.saveUserSession(security.getLoggedUser());
+    }
+
     $scope.loginUser = '';
     $scope.loginPass = '';
 
