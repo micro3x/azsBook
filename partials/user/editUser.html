@@ -1,25 +1,35 @@
 <header ng-include="'partials/user/userHeader.html'"></header>
 <div ng-controller="editUserController">
-    <form class="col-sm-4 col-sm-offset-4">
+    <h1 class="col-sm-4 col-sm-offset-4">Edit User Profile</h1>
+    <form class="col-sm-4 col-sm-offset-4" ng-submit="saveProfile()">
         <div class="form-group">
             <label for="name">Full name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter Name" ng-model="user.username">
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" ng-model="user.name">
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
         </div>
         <div class="form-group">
-            <img src="{{user.profileImageData}}" alt="profile-picture" id="current-profile-image"/>
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" ng-model="user.gender">
+                <option value="0">Other</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <img class="profile-picture" src="{{user.profileImageData}}" alt="profile-picture" id="current-profile-image"/>
             <label for="avatar">Change Avatar</label>
-            <input type="file" id="avatar">
+            <input type="file" id="avatar" onchange="angular.element(this).scope().avatarChanged(this)">
             <p class="help-block">Select a picture less then 128kb</p>
         </div>
         <div class="form-group">
             <label for="background">Change Background</label>
-            <input type="file" id="background">
+            <input type="file" id="background" onchange="angular.element(this).scope().backgroundChanged(this)">
+
             <p class="help-block">Selected picture must be less then 1MB</p>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">Submit Changes</button>
     </form>
 </div>

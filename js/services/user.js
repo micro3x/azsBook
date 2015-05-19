@@ -9,8 +9,8 @@ app.factory('user', function ($resource, $http, baseUrl) {
         });
 
     var resourceMe = $resource(
-        baseUrl + '/me/:id',
-        {id: '@id'},
+        baseUrl + '/me',
+        {},
         {
             update: {
                 method: 'PUT'
@@ -29,10 +29,14 @@ app.factory('user', function ($resource, $http, baseUrl) {
         return resourceMe.get().$promise;
     }
 
+    function updateInfo(user){
+        return resourceMe.update(user).$promise;
+    }
 
     return {
         logout: logout,
         getFullUserInfo: getFullUserInfo,
-        getMyFullInfo: getMyFullInfo
+        getMyFullInfo: getMyFullInfo,
+        updateInfo:updateInfo
     }
 });

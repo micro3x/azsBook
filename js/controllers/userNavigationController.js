@@ -1,16 +1,14 @@
 app.controller('userNavigationController', function ($scope, $location, $route, security, infoService, user) {
     $scope.user = {};
-    var userInfo = user.getMyFullInfo().then(
+    $scope.myStyle = {"background-image":"url('"+ $scope.user.coverImageData +"')"};
+
+    user.getMyFullInfo().then(
         function (success) {
             $scope.user = success;
-            console.log(success);
+            $scope.myStyle = {"background-image":"url('"+ $scope.user.coverImageData +"')"};
         },
         function (error) {
             console.log(error);
         }
     );
-
-    $scope.user = userInfo;
-
-
 });
