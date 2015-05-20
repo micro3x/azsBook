@@ -9,15 +9,19 @@
     </div>
     <div class="controls">
         <ul class="post-controls">
-            <li>like ({{post.likesCount}})</li>
+            <li>
+                <a href="" ng-click="likePost(post.id); post.liked = !post.liked; post.likesCount = post.likesCount + 1" ng-if="!post.liked">like</a>
+                <a href="" ng-click="unLikePost(post.id); post.liked = !post.liked; post.likesCount = post.likesCount - 1" ng-if="post.liked">unlike</a>
+                ({{post.likesCount}})
+            </li>
             <li>comment</li>
-            <li ng-click="limit = 10000">show all comments ({{post.totalCommentsCount}})</li>
+            <li ng-click="limit = 10000"><a href="">show all comments</a> ({{post.totalCommentsCount}})</li>
         </ul>
     </div>
 </div>
 <div>
     <ul>
-        <li ng-repeat="comment in post.comments | limitTo: limit" >
+        <li ng-repeat="comment in post.comments | limitTo: limit">
             <div post-comment></div>
         </li>
     </ul>

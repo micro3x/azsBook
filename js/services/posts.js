@@ -8,8 +8,8 @@ app.factory('posts', function ($resource, $http, baseUrl) {
             }
         });
 
-    var resourceMe = $resource(
-        baseUrl + '/me/:params',
+    var resourcePost = $resource(
+        baseUrl + '/Posts:params',
         {params: '@param'},
         {
             update: {
@@ -28,8 +28,29 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         }, {}).$promise;
     }
 
+//http://softuni-social-network.azurewebsites.net/api/Posts/1/likes
+    function likePost(id) {
+        return resourcePost.save({params: '/' + id + '/likes'}, {}).$promise;
+    }
+
+    function unLikePost(id) {
+        return resourcePost.remove({params: '/' + id + '/likes'}, {}).$promise;
+    }
+
+    function likeComment(postId, id) {
+        return resourcePost.save({params: '/' + postId + '/comments/' + id + '/likes'}, {}).$promise;
+    }
+
+    function unLikeComment(postId, id) {
+        return resourcePost.remove({params: '/' + postId + '/comments/' + id + '/likes'}, {}).$promise;
+    }
+
     return {
         getFriendWallPage: getFriendWallPage,
+        likePost: likePost,
+        unLikePost: unLikePost,
+        likeComment: likeComment,
+        unLikeComment: unLikeComment
 
     }
 

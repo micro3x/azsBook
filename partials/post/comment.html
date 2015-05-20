@@ -1,1 +1,21 @@
-this is comment
+<div class="post">
+    <div>
+        <img ng-src="{{comment.author.profileImageData}}" alt="author" class="small-icon-like"/>
+        <span><string>{{comment.author.name}} posted:</string></span>
+        <time><sup>{{comment.date}}</sup></time>
+    </div>
+    <div>
+        <p>{{comment.commentContent}}</p>
+    </div>
+    <div class="controls">
+        <ul class="post-controls">
+            <li>
+                <a href="" ng-click="likeComment(post.id, comment.id); comment.liked = !comment.liked; comment.likesCount = comment.likesCount + 1"
+                   ng-if="!comment.liked">like</a>
+                <a href="" ng-click="unLikeComment(post.id, comment.id); comment.liked = !comment.liked; comment.likesCount = comment.likesCount - 1;"
+                   ng-if="comment.liked">unlike</a>
+                ({{comment.likesCount}})
+            </li>
+        </ul>
+    </div>
+</div>
