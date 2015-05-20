@@ -17,5 +17,3 @@ app.controller('friendsPreviewController', function ($scope, $location, $route, 
 
 
 });
-
-

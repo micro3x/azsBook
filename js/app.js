@@ -25,9 +25,14 @@ app.config(
             controller: 'homeController'
         });
 
+        $routeProvider.when('/friends', {
+            templateUrl: 'partials/user/userMyFriends.html',
+            controller: 'homeController'
+        });
 
-        $routeProvider.when('/User/:username', {
-            templateUrl: 'partials/user/editUser.html',
+
+        $routeProvider.when('/user/:username', {
+            templateUrl: 'partials/user/user.html',
             controller: 'homeController' //todo determine if user is logged
         });
 

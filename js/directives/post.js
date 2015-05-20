@@ -1,0 +1,1 @@
+//todo create directive for posts and use it!
