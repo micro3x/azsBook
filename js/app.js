@@ -12,10 +12,21 @@ app.config(
                 }
                 return 'partials/pages/guestHome.html';
             },
-            controller: 'homeController' //todo determine if user is logged
+            controller: 'homeController'
         });
 
         $routeProvider.when('/editUser', {
+            templateUrl: 'partials/user/editUser.html',
+            controller: 'homeController'
+        });
+
+        $routeProvider.when('/changepass', {
+            templateUrl: 'partials/user/changePassword.html',
+            controller: 'homeController'
+        });
+
+
+        $routeProvider.when('/User/:username', {
             templateUrl: 'partials/user/editUser.html',
             controller: 'homeController' //todo determine if user is logged
         });

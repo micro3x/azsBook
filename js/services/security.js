@@ -1,11 +1,11 @@
 app.factory('security', function ($http, $q, baseUrl) {
-    function login(username, password){
+    function login(username, password) {
         var deffer = $q.defer();
         $http.post(baseUrl + '/users/login', {
             username: username,
             password: password
         }).success(function (data) {
-            saveUserSession({username:data.userName, authToken:data.access_token});
+            saveUserSession({username: data.userName, authToken: data.access_token});
             deffer.resolve(data);
         }).error(function (error) {
             deffer.reject(error);
@@ -13,16 +13,16 @@ app.factory('security', function ($http, $q, baseUrl) {
         return deffer.promise;
     }
 
-    function clearUserSession(){
+    function clearUserSession() {
         $http.defaults.headers.common['Authorization'] = '';
         sessionStorage.removeItem('loggedUser');
     }
 
-    function isUserLogged(){
+    function isUserLogged() {
         var currentUser = getLoggedUser();
-        if(!currentUser){
+        if (!currentUser) {
             currentUser = JSON.parse(localStorage.getItem('loggedUser'));
-            if(currentUser){
+            if (currentUser) {
                 login(currentUser.username, currentUser.password);
                 return true;
             }
@@ -32,7 +32,7 @@ app.factory('security', function ($http, $q, baseUrl) {
         // todo validate token - get info about me. :)
     }
 
-    function register(username, fullName, email, password, repeatedPass){
+    function register(username, fullName, email, password, repeatedPass) {
         // todo implement registration
         var deffer = $q.defer();
         $http.post(baseUrl + '/users/register', {
@@ -42,7 +42,7 @@ app.factory('security', function ($http, $q, baseUrl) {
             name: fullName,
             email: email
         }).success(function (data) {
-            saveUserSession({username:data.userName, authToken:data.access_token});
+            saveUserSession({username: data.userName, authToken: data.access_token});
             deffer.resolve(data);
         }).error(function (error) {
             deffer.reject(error);
@@ -50,26 +50,26 @@ app.factory('security', function ($http, $q, baseUrl) {
         return deffer.promise;
     }
 
-    function getLoggedUser(){
+    function getLoggedUser() {
         var strUser = sessionStorage.getItem('loggedUser');
-        if(strUser){
+        if (strUser) {
             return JSON.parse(strUser);
         }
         // todo read from session storage
     }
 
-    function rememberUser(user){
+    function rememberUser(user) {
         //todo remember user in Local storage, save user and pass if tocken is not working
     }
 
-    function saveUserSession(user){
+    function saveUserSession(user) {
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + user.authToken;
         sessionStorage.setItem('loggedUser', JSON.stringify(user));
     }
 
     return {
         login: login,
-        clearUserSession:clearUserSession,
+        clearUserSession: clearUserSession,
         register: register,
         isUserLogged: isUserLogged,
         getLoggedUser: getLoggedUser,

@@ -40,15 +40,15 @@ app.factory('user', function ($resource, $http, baseUrl) {
     }
 
     function previewUser(username) {
-        return resourceUsers.get({id: username + '/preview'})
+        return resourceUsers.get({id: username + '/preview'}).$promise;
     }
 
     function getUserFullData(username) {
-        return resourceUsers.get({id: username})
+        return resourceUsers.get({id: username}).$promise;
     }
 
     function searchUsers(query) {
-        return resourceUsers.get({id: 'search?searchTerm=' + query})
+        return resourceUsers.get({id: 'search?searchTerm=' + query}).$promise;
     }
 
     function getFriendWallPage(user, fromPost, size) {
@@ -58,11 +58,23 @@ app.factory('user', function ($resource, $http, baseUrl) {
     }
 
     function getFriendFriends() {
-        return resourceUsers.get({id: username + '/friends'})
+        return resourceUsers.get({id: username + '/friends'}).$promise;
     }
 
     function getFriendFriendsPreview() {
-        return resourceUsers.get({id: username + '/friends/preview'})
+        return resourceUsers.get({id: username + '/friends/preview'}).$promise;
+    }
+
+    function getMyFriends() {
+        return resourceMe.query({params: 'friends'}).$promise;
+    }
+
+    function changeMyPassword(old, newPass, repNewPass) {
+        return resourceMe.update({params: 'changepassword'}, {
+            oldPassword: old,
+            newPassword: newPass,
+            confirmPassword: repNewPass
+        }).$promise;
     }
 
     return {
@@ -76,6 +88,8 @@ app.factory('user', function ($resource, $http, baseUrl) {
         searchUsers: searchUsers,
         getFriendWallPage: getFriendWallPage,
         getFriendFriends: getFriendFriends,
-        getFriendFriendsPreview: getFriendFriendsPreview
+        getFriendFriendsPreview: getFriendFriendsPreview,
+        getMyFriends: getMyFriends,
+        changeMyPassword: changeMyPassword
     }
 });

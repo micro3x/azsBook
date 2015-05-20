@@ -1,13 +1,10 @@
 app.controller('friendsPreviewController', function ($scope, $location, $route, security, infoService, user) {
+    //$scope.friends = {};
 
-    var startPost = '';
-
-    $scope.feedData = {};
-
-    $scope.getNewsFeed = function () {
-        user.getNewsFeed().then(
+    $scope.getFriends = function () {
+        user.getMyFriends().then(
             function (data) {
-                $scope.feedData = data;
+                $scope.friends = data;
             },
             function (error) {
                 infoService.error(error.message);
@@ -16,7 +13,7 @@ app.controller('friendsPreviewController', function ($scope, $location, $route, 
     };
 
 
-    $scope.getNewsFeed();
+    $scope.getFriends();
 
 
 });
