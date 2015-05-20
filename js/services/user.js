@@ -48,7 +48,7 @@ app.factory('user', function ($resource, $http, baseUrl) {
     }
 
     function searchUsers(query) {
-        return resourceUsers.get({id: 'search?searchTerm=' + query}).$promise;
+        return resourceUsers.query({id: 'search?searchTerm=' + query}).$promise;
     }
 
     function getFriendWallPage(user, fromPost, size) {

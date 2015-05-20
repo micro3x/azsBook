@@ -42,21 +42,9 @@ app.controller('homeController', function ($scope, $location, $route, security, 
                 infoService.error(error.message);
             }
         );
-    }
+    };
 
-    $scope.logout = function () {
-        user.logout().then(
-            function (success) {
-                security.clearUserSession();
-                $location.path('/');
-                $route.reload();
-            },
-            function (error) {
-                infoService.error(error.statusText);
-            }
-        );
 
-    }
 
 
 });
