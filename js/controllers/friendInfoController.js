@@ -7,11 +7,28 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
 
     user.getUserFullData(id).then(
         function (success) {
+            success.coverImageData = $scope.correctImageIfNeeded(success.coverImageData);
+            success.profileImageData = $scope.correctImageIfNeeded(success.profileImageData);
             $scope.friend = success;
-            $scope.friendStyle = {"background-image": "url('" + success.coverImageData + "')"};
+
+            if (success.coverImageData) {
+                $scope.friendStyle = {"background-image": "url('" + success.coverImageData + "')"};
+            }
         },
         function (error) {
             console.log(error);
         }
     );
+
+    $scope.inviteAsFriend = function () {
+        user.sendFriendRequest($scope.friend.username).then(
+            function (success) {
+                infoService.success('Friend Request Sent!')
+            },
+            function (error) {
+                infoService.error('Friend Request Not Sent!')
+            }
+        )
+    }
+
 });

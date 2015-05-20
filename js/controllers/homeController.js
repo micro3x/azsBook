@@ -45,6 +45,14 @@ app.controller('homeController', function ($scope, $location, $route, security, 
     };
 
 
+    $scope.correctImageIfNeeded = function (imageData) {
+        if(imageData) {
+            if (imageData.match(/data:image\/jpeg;base64,\/.*/)) {
+                return imageData;
+            }
+            return 'data:image/jpeg;base64,' + imageData;
+        }
+    }
 
 
 });

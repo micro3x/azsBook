@@ -77,6 +77,13 @@ app.factory('user', function ($resource, $http, baseUrl) {
         }).$promise;
     }
 
+    //http://softuni-social-network.azurewebsites.net/api/me/requests/John
+    function sendFriendRequest(user){
+        return resourceMe.save({params: 'requests/' + user},{}).$promise;
+    }
+
+
+
     return {
         logout: logout,
         getFullUserInfo: getFullUserInfo,
@@ -90,6 +97,7 @@ app.factory('user', function ($resource, $http, baseUrl) {
         getFriendFriends: getFriendFriends,
         getFriendFriendsPreview: getFriendFriendsPreview,
         getMyFriends: getMyFriends,
-        changeMyPassword: changeMyPassword
+        changeMyPassword: changeMyPassword,
+        sendFriendRequest: sendFriendRequest,
     }
 });
