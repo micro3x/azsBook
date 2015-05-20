@@ -18,7 +18,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#/" class="glyphicon glyphicon-home"></a></li>
-                    <li><a href="#/" class="glyphicon glyphicon-envelope"></a></li>
+                    <li>
+                        <a href="#/" class="glyphicon glyphicon-envelope" ng-click="showFriendRequests()"><sub ng-model="hasRequests" ng-if="hasRequests">{{friendRequests.length}}</sub></a>
+                        <div class="requests-data" ng-show="showRequests">
+                            <ul ng-model="searchResults">
+                                <li ng-repeat="request in friendRequests" >
+                                    <div friend-request></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="#/editUser" class="glyphicon glyphicon-pencil"></a></li>
                     <li><a href="#/changepass" class="glyphicon glyphicon-certificate"></a></li>
                     <!--<li class="dropdown">-->
@@ -45,12 +54,15 @@
                     <li class="dropdown">
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
-                                <input type="text" id="user-search" class="form-control" placeholder="Search" onchange="">
+                                <input type="text" id="user-search" class="form-control" placeholder="Search"
+                                       onchange="">
                             </div>
-                            <button type="submit" class="btn btn-default glyphicon glyphicon-search" onclick="angular.element(this).scope().searchUsers(document.getElementById('user-search'))"></button>
+                            <button type="submit" class="btn btn-default glyphicon glyphicon-search"
+                                    onclick="angular.element(this).scope().searchUsers(document.getElementById('user-search'))"></button>
                         </form>
-                        <div ng-show="isSearching" id="search-results" ng-model="searchResults" class="col-sm-1 col-sm-offset-1" >
-                            <ul >
+                        <div ng-show="isSearching" id="search-results" ng-model="searchResults"
+                             class="col-sm-1 col-sm-offset-1">
+                            <ul>
                                 <li ng-repeat="foundUser in searchResults">
                                     <div user-found></div>
                                 </li>

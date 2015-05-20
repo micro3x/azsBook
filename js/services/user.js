@@ -82,6 +82,9 @@ app.factory('user', function ($resource, $http, baseUrl) {
         return resourceMe.save({params: 'requests/' + user},{}).$promise;
     }
 
+    function getFriendRequests(){
+        return resourceMe.query({params: 'requests'},{}).$promise;
+    }
 
 
     return {
@@ -99,5 +102,6 @@ app.factory('user', function ($resource, $http, baseUrl) {
         getMyFriends: getMyFriends,
         changeMyPassword: changeMyPassword,
         sendFriendRequest: sendFriendRequest,
+        getFriendRequests:getFriendRequests
     }
 });
