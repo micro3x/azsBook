@@ -1,8 +1,13 @@
 app.controller('friendsPreviewController', function ($scope, $location, $route, security, infoService, user) {
-    //$scope.friends = {};
+    $scope.friends = [];
 
-    $scope.getFriends = function () {
-        user.getMyFriends().then(
+    $scope.getFriends = function (username) {
+        var getFriends = user.getMyFriends;
+        if(username){
+            getFriends = user.getFriendFriends;
+        }
+
+        getFriends().then(
             function (data) {
                 $scope.friends = data;
             },
@@ -12,8 +17,5 @@ app.controller('friendsPreviewController', function ($scope, $location, $route, 
         );
     };
 
-
     $scope.getFriends();
-
-
 });

@@ -1,1 +1,6 @@
-//todo create directive for posts and use it!
+app.directive('post', function() {
+    return {
+        restrict: 'A',
+        templateUrl: 'partials/post/post.html'
+    };
+});

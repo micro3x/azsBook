@@ -1,11 +1,14 @@
-<header ng-controller="userNavigationController">
-    <div ng-include="'partials/user/userHeader.html'"></div>
-    <div ng-include="'partials/user/friendInfo.html'"></div>
-</header>
-
-<!--<div class="col-sm-6" ng-controller="newsFeedController" ng-include="'partials/post/myFeed.html'">-->
-
-<!--</div>-->
+<div ng-controller="userNavigationController">
+    <div ng-controller="friendInfoController">
+        <header>
+            <div ng-include="'partials/user/userHeader.html'"></div>
+            <div ng-include="'partials/user/friendInfo.html'"></div>
+        </header>
+        <div class="col-sm-6" ng-controller="wallController">
+            <div ng-include="'partials/post/wall.html'"></div>
+        </div>
+    </div>
+</div>
 
 <!--<div class="col-sm-3" ng-controller="friendsPreviewController" ng-include="'partials/user/friendsPreview.html'">-->
 

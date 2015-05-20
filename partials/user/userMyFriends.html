@@ -1,4 +1,6 @@
-<header ng-include="'partials/user/userHeader.html'"></header>
+<header ng-controller="userNavigationController">
+    <div ng-include="'partials/user/userHeader.html'"></div>
+</header>
 <div ng-controller="friendsPreviewController">
     <h1>Friends Count - {{friends.length}}</h1>
 

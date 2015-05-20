@@ -1,1 +1,6 @@
-//todo create directive for comments and use it!
+app.directive('postComment', function() {
+    return {
+        restrict: 'A',
+        templateUrl: 'partials/post/comment.html'
+    };
+});

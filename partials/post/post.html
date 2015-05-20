@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-
-    </body>
-</html>
+<div class="post" ng-init="limit = 1">
+    <div>
+        <img ng-src="{{post.author.profileImageData}}" alt="author" class="small-icon-like"/>
+        <span><string>{{post.author.name}} posted:</string></span>
+        <time><sup>{{post.date}}</sup></time>
+    </div>
+    <div>
+        <p>{{post.postContent}}</p>
+    </div>
+    <div class="controls">
+        <ul class="post-controls">
+            <li>like ({{post.likesCount}})</li>
+            <li>comment</li>
+            <li ng-click="limit = 10000">show all comments ({{post.totalCommentsCount}})</li>
+        </ul>
+    </div>
+</div>
+<div>
+    <ul>
+        <li ng-repeat="comment in post.comments | limitTo: limit" >
+            <div post-comment></div>
+        </li>
+    </ul>
+</div>

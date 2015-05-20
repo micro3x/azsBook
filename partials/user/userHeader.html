@@ -21,6 +21,7 @@
                     <li>
                         <a href="" class="glyphicon glyphicon-envelope" ng-click="showFriendRequests()"><sub ng-model="hasRequests" ng-if="hasRequests">{{friendRequests.length}}</sub></a>
                         <div class="requests-data" ng-show="showRequests">
+                            <span ng-show="friendRequests.length <= 0">No pending Requests!</span>
                             <ul ng-model="searchResults">
                                 <li ng-repeat="request in friendRequests" >
                                     <div friend-request></div>

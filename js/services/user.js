@@ -46,7 +46,7 @@ app.factory('user', function ($resource, $http, baseUrl) {
     function getUserFullData(username) {
         return resourceUsers.get({id: username}).$promise;
     }
-
+http://softuni-social-network.azurewebsites.net/api/users/John/wall?StartPostId=&PageSize=5
     function searchUsers(query) {
         return resourceUsers.query({id: 'search?searchTerm=' + query}).$promise;
     }

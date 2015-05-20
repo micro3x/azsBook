@@ -24,6 +24,7 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
         user.sendFriendRequest($scope.friend.username).then(
             function (success) {
                 infoService.success('Friend Request Sent!')
+                $route.reload();
             },
             function (error) {
                 infoService.error('Friend Request Not Sent!')

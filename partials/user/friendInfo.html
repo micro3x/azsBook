@@ -6,6 +6,7 @@
             <li>gender : {{friend.gender}}</li>
             <li>avatar : <img ng-src="{{friend.profileImageData}}" alt="profile-picture" class="profile-picture"/></li>
         </ul>
-        <button type="button" value="Invite as Friend" ng-hide="friend.isFriend" ng-click="inviteAsFriend()">Invite as Friend</button>
+        <button type="button" value="Invite as Friend" ng-hide="friend.isFriend || friend.hasPendingRequest" ng-click="inviteAsFriend()">Invite as Friend</button>
+        <span ng-show="friend.hasPendingRequest">Pending Approval</span>
     </div>
 </div>

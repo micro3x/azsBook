@@ -1,4 +1,6 @@
-<header ng-include="'partials/user/userHeader.html'"></header>
+<header ng-controller="userNavigationController">
+    <div ng-include="'partials/user/userHeader.html'"></div>
+</header>
 <div ng-controller="editUserController">
     <h1 class="col-sm-4 col-sm-offset-4">Edit User Profile</h1>
     <form class="col-sm-4 col-sm-offset-4" ng-submit="saveProfile()">
