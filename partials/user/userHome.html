@@ -1,4 +1,7 @@
-<header ng-include="'partials/user/userHeader.html'"></header>
+<header ng-controller="userNavigationController">
+    <div ng-include="'partials/user/userHeader.html'"></div>
+    <div ng-include="'partials/user/userInfo.html'"></div>
+</header>
 <div class="col-sm-6" ng-controller="newsFeedController" ng-include="'partials/post/myFeed.html'">
 
 </div>

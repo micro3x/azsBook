@@ -1,9 +1,6 @@
 #main-title {
   margin: 0 auto;
 }
-.user-header {
-  background: cornflowerblue;
-}
 .profile-picture {
   max-width: 150px ;
   max-height: 150px ;
@@ -14,9 +11,15 @@
 .friends-preview-list li {
   display: inline-block;
 }
-#search-results {
-  display: none;
-  position: fixed;
+#search-results ul {
   top: 0;
   left: 0;
+  z-index: 1000;
+  position: absolute;
+  background: white;
+  list-style: none;
+  padding: 0;
+}
+#search-results ul li {
+  padding: 2px;
 }

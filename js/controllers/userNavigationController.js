@@ -43,7 +43,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
                 }
             )
         } else {
-            $scope.clearSearch();
+           $scope.clearSearch();
         }
     };
 
@@ -58,6 +58,4 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
             $scope.searchResults = [];
         }
     }
-
-
 });

@@ -32,7 +32,7 @@ app.config(
 
 
         $routeProvider.when('/user/:username', {
-            templateUrl: 'partials/user/userView.html',
+            templateUrl: 'partials/user/displayUser.html',
             controller: 'homeController' //todo determine if user is logged
         });
 

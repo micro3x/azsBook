@@ -3,7 +3,7 @@
 }
 
 .user-header{
-    background: cornflowerblue;
+
 }
 
 .profile-picture{
@@ -19,9 +19,18 @@
 }
 
 #search-results{
-    display: none;
+    //display: none;
     //float: left;
-    position: fixed;
-    top: 0;
-    left: 0;
+    ul {
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        position: absolute;
+        background: white;
+        list-style: none;
+        padding: 0;
+        li {
+           padding: 2px;
+        }
+    }
 }

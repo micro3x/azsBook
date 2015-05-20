@@ -1,0 +1,10 @@
+<div class="user-header col-sm-12">
+    <div id="user-data" ng-controller="friendInfoController" ng-style="friendStyle">
+        <ul>
+            <li>fullname : {{friend.name}}</li>
+            <li>username : {{friend.username}}</li>
+            <li>gender : {{friend.gender}}</li>
+            <li>avatar : <img ng-src="{{friend.profileImageData}}" alt="profile-picture" class="profile-picture"/></li>
+        </ul>
+    </div>
+</div>
