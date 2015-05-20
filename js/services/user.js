@@ -86,6 +86,15 @@ app.factory('user', function ($resource, $http, baseUrl) {
         return resourceMe.query({params: 'requests'},{}).$promise;
     }
 
+    //http://softuni-social-network.azurewebsites.net/api/me/requests/2?status=approved
+    function acceptFriendRequest(id){
+        return resourceMe.update({params: 'requests/' + id + '?status=approved'},{}).$promise;
+    }
+
+    function rejectFriendRequest(id){
+        return resourceMe.update({params: 'requests/' + id + '?status=delete'},{}).$promise;
+    }
+
 
     return {
         logout: logout,
@@ -102,6 +111,8 @@ app.factory('user', function ($resource, $http, baseUrl) {
         getMyFriends: getMyFriends,
         changeMyPassword: changeMyPassword,
         sendFriendRequest: sendFriendRequest,
-        getFriendRequests:getFriendRequests
+        getFriendRequests:getFriendRequests,
+        acceptFriendRequest:acceptFriendRequest,
+        rejectFriendRequest:rejectFriendRequest
     }
 });

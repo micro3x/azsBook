@@ -82,6 +82,30 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
 
     $scope.showFriendRequests = function () {
         $scope.showRequests = !$scope.showRequests;
-    }
+    };
+
+    $scope.acceptRequest = function (id) {
+        user.acceptFriendRequest(id).then(
+            function (success) {
+                infoService.success('You have a new Friend');
+                $route.reload();
+            },
+            function (error) {
+                infoService.error(error.message)
+            }
+        )
+    };
+
+    $scope.rejectRequest = function (id) {
+        user.acceptFriendRequest(id).then(
+            function (success) {
+                infoService.success('You Kicked His ASS!');
+                $route.reload();
+            },
+            function (error) {
+                infoService.error(error.message)
+            }
+        )
+    };
 
 });
