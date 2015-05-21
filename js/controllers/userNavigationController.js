@@ -6,10 +6,11 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     $scope.hasRequests = false;
     $scope.showRequests = false;
     $scope.friendRequests = [];
-
+    $scope.username = '';
 
     user.getMyFullInfo().then(
         function (success) {
+            $scope.username = success.username;
             success.coverImageData = $scope.correctImageIfNeeded(success.coverImageData);
             success.profileImageData = $scope.correctImageIfNeeded(success.profileImageData);
             $scope.user = success;
@@ -97,7 +98,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     };
 
     $scope.rejectRequest = function (id) {
-        user.acceptFriendRequest(id).then(
+        user.rejectFriendRequest(id).then(
             function (success) {
                 infoService.success('You Kicked His ASS!');
                 $route.reload();
@@ -106,6 +107,10 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
                 infoService.error(error.message)
             }
         )
+    };
+
+    $scope.viewFriends = function () {
+        $location.path('/friends');
     };
 
 });

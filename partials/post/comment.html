@@ -10,7 +10,7 @@
     <div class="controls">
         <ul class="post-controls">
             <li><a href="" ng-if="canEditComment(comment, post)">edit</a></li>
-            <li><a href="" ng-if="canEditComment(comment, post)">delete</a></li>
+            <li><a href="" ng-if="canEditComment(comment, post)" ng-click="deleteComment(post, comment)">delete</a></li>
             <li>
                 <a href="" ng-click="likeComment(post.id, comment)" ng-if="!comment.liked">like</a>
                 <a href="" ng-click="unLikeComment(post.id, comment)" ng-if="comment.liked">unlike</a>

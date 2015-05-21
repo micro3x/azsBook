@@ -25,11 +25,15 @@ app.config(
             controller: 'homeController'
         });
 
-        $routeProvider.when('/friends', {
-            templateUrl: 'partials/user/userMyFriends.html',
+        $routeProvider.when('/user/:username/friends', {
+            templateUrl: 'partials/user/userFriends.html',
             controller: 'homeController'
         });
 
+        $routeProvider.when('/friends', {
+            templateUrl: 'partials/user/userFriends.html',
+            controller: 'homeController'
+        });
 
         $routeProvider.when('/user/:username', {
             templateUrl: 'partials/user/displayUser.html',

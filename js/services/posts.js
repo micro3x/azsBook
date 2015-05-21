@@ -63,6 +63,10 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         return resourcePost.save({params: ''}, {username: username, postContent: text}).$promise;
     }
 
+    function deleteComment(postId, commentId){
+        return resourcePost.remove({params: '/' + postId + '/comments/' + commentId}, {}).$promise;
+    }
+
     return {
         getFriendWallPage: getFriendWallPage,
         likePost: likePost,
@@ -73,7 +77,8 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         newComment: newComment,
         deletePost: deletePost,
         editPost: editPost,
-        newPost: newPost
+        newPost: newPost,
+        deleteComment:deleteComment
     }
 
 });

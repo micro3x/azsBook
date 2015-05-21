@@ -90,21 +90,37 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
+    $scope.deleteComment = function (post, comment) {
+        posts.deleteComment(post.id, comment.id).then(
+            function (success) {
+                post.comments = post.comments.filter(function (d) {
+                    if (d == comment) {
+                        return false;
+                    }
+                    return true;
+                })
+            },
+            function (error) {
+                infoService.error(error.message);
+            }
+        );
+    };
+
     $scope.canEditPost = function (post) {
-        if(post.author.username == $scope.user.username){
+        if (post.author.username == $scope.user.username) {
             return true;
         }
-        if(post.wallOwner.username == $scope.user.username){
+        if (post.wallOwner.username == $scope.user.username) {
             return true;
         }
         return false;
     };
 
     $scope.canEditComment = function (comment, post) {
-        if(comment.author.username == $scope.user.username){
+        if (comment.author.username == $scope.user.username) {
             return true;
         }
-        if(post.wallOwner.username == $scope.user.username){
+        if (post.wallOwner.username == $scope.user.username) {
             return true;
         }
         return false;
@@ -114,7 +130,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         posts.deletePost(post.id).then(
             function (success) {
                 $scope.wallData = $scope.wallData.filter(function (d) {
-                    if(d == post){
+                    if (d == post) {
                         return false;
                     }
                     return true;
@@ -138,8 +154,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
 
     };
 
-
-    $scope.getWallPage();
-
-
+    if (username) {
+        $scope.getWallPage();
+    }
 });

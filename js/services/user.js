@@ -57,11 +57,11 @@ http://softuni-social-network.azurewebsites.net/api/users/John/wall?StartPostId=
         return resourceUsers.query({id: user + '/wall?StartPostId=' + startPost + '&PageSize=' + count}).$promise;
     }
 
-    function getFriendFriends() {
-        return resourceUsers.get({id: username + '/friends'}).$promise;
+    function getFriendFriends(username) {
+        return resourceUsers.query({id: username + '/friends'}).$promise;
     }
 
-    function getFriendFriendsPreview() {
+    function getFriendFriendsPreview(username) {
         return resourceUsers.get({id: username + '/friends/preview'}).$promise;
     }
 
@@ -92,7 +92,7 @@ http://softuni-social-network.azurewebsites.net/api/users/John/wall?StartPostId=
     }
 
     function rejectFriendRequest(id){
-        return resourceMe.update({params: 'requests/' + id + '?status=delete'},{}).$promise;
+        return resourceMe.update({params: 'requests/' + id + '?status=rejected'},{}).$promise;
     }
 
 

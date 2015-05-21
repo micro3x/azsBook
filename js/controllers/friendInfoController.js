@@ -1,9 +1,8 @@
-//friendInfoController
 app.controller('friendInfoController', function ($scope, $routeParams, $location, $route, security, infoService, user) {
     $scope.friend = {};
     $scope.friendStyle = {};
-
     var id = $routeParams.username;
+    $scope.username = id;
 
     user.getUserFullData(id).then(
         function (success) {
@@ -14,6 +13,7 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
             if (success.coverImageData) {
                 $scope.friendStyle = {"background-image": "url('" + success.coverImageData + "')"};
             }
+
         },
         function (error) {
             console.log(error);
@@ -30,6 +30,9 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
                 infoService.error('Friend Request Not Sent!')
             }
         )
-    }
+    };
 
+    $scope.viewFriends = function () {
+        $location.path('/user/'+ id +'/friends');
+    };
 });
