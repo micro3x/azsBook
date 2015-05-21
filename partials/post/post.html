@@ -1,4 +1,4 @@
-<div class="post" ng-init="limit = 1">
+<div class="post" ng-init="newComment = false">
     <div>
         <img ng-src="{{post.author.profileImageData}}" alt="author" class="small-icon-like"/>
         <span><string>{{post.author.name}} posted:</string></span>
@@ -10,18 +10,28 @@
     <div class="controls">
         <ul class="post-controls">
             <li>
-                <a href="" ng-click="likePost(post.id); post.liked = !post.liked; post.likesCount = post.likesCount + 1" ng-if="!post.liked">like</a>
-                <a href="" ng-click="unLikePost(post.id); post.liked = !post.liked; post.likesCount = post.likesCount - 1" ng-if="post.liked">unlike</a>
+                <a href="" ng-click="likePost(post)" ng-if="!post.liked">like</a>
+                <a href="" ng-click="unLikePost(post)" ng-if="post.liked">unlike</a>
                 ({{post.likesCount}})
             </li>
-            <li>comment</li>
-            <li ng-click="limit = 10000"><a href="">show all comments</a> ({{post.totalCommentsCount}})</li>
+            <li><a href="" ng-click="newComment = true">comment</a></li>
+            <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})</li>
         </ul>
+    </div>
+    <div class="comment-post-controls" ng-show="newComment" ng-init="commentText">
+        <form ng-submit="commentPost(post, commentText)">
+            <div class="form-group">
+                <label for="commentContent">Enter Your Comment</label>
+                <textarea ng-model="commentText" class="form-control" id="commentContent" placeholder="Your Comment Here!"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="newComment = false">Submit</button>
+            <button type="reset" class="btn btn-default" ng-click="newComment = false">Cancel</button>
+        </form>
     </div>
 </div>
 <div>
     <ul>
-        <li ng-repeat="comment in post.comments | limitTo: limit">
+        <li ng-repeat="comment in post.comments">
             <div post-comment></div>
         </li>
     </ul>

@@ -17,8 +17,6 @@ app.factory('posts', function ($resource, $http, baseUrl) {
             }
         });
 
-// http://softuni-social-network.azurewebsites.net/api/users/John/wall?StartPostId=&PageSize=5
-
     function getFriendWallPage(username, pageSize, startPost) {
         var size = pageSize || 5;
         var start = startPost || '';
@@ -28,7 +26,6 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         }, {}).$promise;
     }
 
-//http://softuni-social-network.azurewebsites.net/api/Posts/1/likes
     function likePost(id) {
         return resourcePost.save({params: '/' + id + '/likes'}, {}).$promise;
     }
@@ -45,13 +42,23 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         return resourcePost.remove({params: '/' + postId + '/comments/' + id + '/likes'}, {}).$promise;
     }
 
+    //http://softuni-social-network.azurewebsites.net/api/posts/26/comments
+    function getPostComments(postId) {
+        return resourcePost.query({params: '/' + postId + '/comments'}).$promise;
+    }
+
+    function newComment(postId, commentContent) {
+        return resourcePost.save({params: '/' + postId + '/comments'}, {commentContent: commentContent}).$promise;
+    }
+
     return {
         getFriendWallPage: getFriendWallPage,
         likePost: likePost,
         unLikePost: unLikePost,
         likeComment: likeComment,
-        unLikeComment: unLikeComment
-
+        unLikeComment: unLikeComment,
+        getPostComments: getPostComments,
+        newComment: newComment
     }
 
 });

@@ -11,15 +11,17 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
                 $scope.wallData = success;
             },
             function (error) {
-                alert('No');
+                console.log(error);
             }
         )
     };
 
-    $scope.likePost = function (postId) {
-        posts.likePost(postId).then(
+    $scope.likePost = function (post) {
+        posts.likePost(post.id).then(
             function () {
                 infoService.success('Post Liked');
+                post.liked = !post.liked;
+                post.likesCount = post.likesCount + 1;
             },
             function (error) {
                 infoService.error(error.message);
@@ -27,10 +29,12 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
-    $scope.unLikePost = function (postId) {
-        posts.unLikePost(postId).then(
+    $scope.unLikePost = function (post) {
+        posts.unLikePost(post.id).then(
             function () {
                 infoService.success('Post NOT Liked anymore');
+                post.liked = !post.liked;
+                post.likesCount = post.likesCount - 1;
             },
             function (error) {
                 infoService.error(error.message);
@@ -38,10 +42,12 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
-    $scope.likeComment = function (postId, commentId) {
-        posts.likeComment(postId, commentId).then(
+    $scope.likeComment = function (postId, comment) {
+        posts.likeComment(postId, comment.id).then(
             function () {
                 infoService.success('Comment Liked');
+                comment.liked = !comment.liked;
+                comment.likesCount = comment.likesCount + 1;
             },
             function (error) {
                 infoService.error(error.message);
@@ -49,10 +55,12 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
-    $scope.unLikeComment = function (postId, commentId) {
-        posts.unLikeComment(postId, commentId).then(
+    $scope.unLikeComment = function (postId, comment) {
+        posts.unLikeComment(postId, comment.id).then(
             function () {
                 infoService.success('Comment NOT Liked anymore');
+                comment.liked = !comment.liked;
+                comment.likesCount = comment.likesCount - 1;
             },
             function (error) {
                 infoService.error(error.message);
@@ -60,6 +68,27 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
+    $scope.getPostComments = function (post) {
+        posts.getPostComments(post.id).then(
+            function (success) {
+                post.comments = success;
+            },
+            function (error) {
+                infoService.error('can\'t get post comments for post id: ' + postId);
+            }
+        )
+    };
+
+    $scope.commentPost = function (post, commentText) {
+        posts.newComment(post.id, commentText).then(
+            function (success) {
+                post.comments.push(success);
+            },
+            function (error) {
+                infoService.error(error.message);
+            }
+        )
+    };
 
     $scope.getWallPage();
 
