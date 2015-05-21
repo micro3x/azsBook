@@ -1,9 +1,18 @@
-app.controller('wallController', function ($scope, posts, $routeParams, $location, $route, security, infoService, user) {
+app.controller('wallController', function ($scope, posts, $routeParams, $location, $route, security, infoService, users) {
+
+    var mouse = {x: 0, y: 0};
+
+    document.addEventListener('mousemove', function (e) {
+        mouse.x = e.clientX || e.pageX;
+        mouse.y = e.clientY || e.pageY
+    }, false);
 
     var startPost = '';
 
     $scope.wallData = [];
     var username = $routeParams.username;
+    $scope.editMode = false;
+    $scope.popStyle = {display: 'none', 'z-index': '10000'};
 
     $scope.getWallPage = function () {
         posts.getFriendWallPage(username).then(
@@ -137,7 +146,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
                 })
             },
             function (error) {
-                infoService.error(error.message);
+                infoService.error(error.data.message);
             }
         );
     };
@@ -145,13 +154,43 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.newPost = function (postContent) {
         posts.newPost(username, postContent).then(
             function (success) {
-                $scope.wallData.push(success);
+                $scope.wallData.unshift(success);
             },
             function (error) {
-                infoService.error(error.message);
+                infoService.error(error.data.message);
             }
         )
 
+    };
+
+    $scope.editPost = function (post) {
+        posts.editPost(post.id, post.postContent).then(
+            function (success) {
+                infoService.success('Post Updated');
+            },
+            function (error) {
+                infoService.error(error.data.message);
+            }
+        )
+    };
+
+    $scope.flyInfo = {};
+    $scope.popStyle = {display: 'none', 'z-index': '10000'};
+
+    $scope.showPopup = function (user) {
+        $scope.flyInfo = user;
+        $scope.flyInfo.pupUp = true;
+        $scope.popStyle.display = 'block';
+        $scope.popStyle.position = 'fixed';
+        $scope.popStyle.top = mouse.y + 'px';
+        $scope.popStyle.left = mouse.x + 'px';
+        $scope.popStyle.background = 'white';
+        $scope.popStyle.border = '1px solid black';
+        $scope.popStyle.padding = '10px';
+    };
+
+    $scope.hideBox = function () {
+        $scope.popStyle = {display: 'none', 'z-index': '10000'};
     };
 
     if (username) {
