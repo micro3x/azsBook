@@ -15,9 +15,12 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.popStyle = {display: 'none', 'z-index': '10000'};
 
     $scope.getWallPage = function () {
-        posts.getFriendWallPage(username).then(
-            function (success) {
-                $scope.wallData = success;
+        posts.getFriendWallPage(username, null, startPost).then(
+            function (data) {
+                if(data.length > 0) {
+                    $scope.wallData = $scope.wallData.concat(data);
+                    startPost = data[data.length - 1].id;
+                }
             },
             function (error) {
                 console.log(error);
@@ -195,5 +198,15 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
 
     if (username) {
         $scope.getWallPage();
+        $(window).scroll(function () {
+
+            var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+            var scrolltrigger = 1;
+
+            if ((wintop / (docheight - winheight)) == scrolltrigger) {
+                $scope.getWallPage();
+                console.log('Getting next')
+            }
+        });
     }
 });
