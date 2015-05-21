@@ -51,6 +51,18 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         return resourcePost.save({params: '/' + postId + '/comments'}, {commentContent: commentContent}).$promise;
     }
 
+    function deletePost(postId) {
+        return resourcePost.remove({params: '/' + postId}).$promise;
+    }
+
+    function editPost(postId, postContent) {
+        return resourcePost.update({params: '/' + postId}, {postContent: postContent}).$promise;
+    }
+
+    function newPost(username, text) {
+        return resourcePost.save({params: ''}, {username: username, postContent: text}).$promise;
+    }
+
     return {
         getFriendWallPage: getFriendWallPage,
         likePost: likePost,
@@ -58,7 +70,10 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         likeComment: likeComment,
         unLikeComment: unLikeComment,
         getPostComments: getPostComments,
-        newComment: newComment
+        newComment: newComment,
+        deletePost: deletePost,
+        editPost: editPost,
+        newPost: newPost
     }
 
 });

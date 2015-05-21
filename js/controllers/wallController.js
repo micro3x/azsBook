@@ -90,6 +90,55 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
+    $scope.canEditPost = function (post) {
+        if(post.author.username == $scope.user.username){
+            return true;
+        }
+        if(post.wallOwner.username == $scope.user.username){
+            return true;
+        }
+        return false;
+    };
+
+    $scope.canEditComment = function (comment, post) {
+        if(comment.author.username == $scope.user.username){
+            return true;
+        }
+        if(post.wallOwner.username == $scope.user.username){
+            return true;
+        }
+        return false;
+    };
+
+    $scope.deletePost = function (post) {
+        posts.deletePost(post.id).then(
+            function (success) {
+                $scope.wallData = $scope.wallData.filter(function (d) {
+                    if(d == post){
+                        return false;
+                    }
+                    return true;
+                })
+            },
+            function (error) {
+                infoService.error(error.message);
+            }
+        );
+    };
+
+    $scope.newPost = function (postContent) {
+        posts.newPost(username, postContent).then(
+            function (success) {
+                $scope.wallData.push(success);
+            },
+            function (error) {
+                infoService.error(error.message);
+            }
+        )
+
+    };
+
+
     $scope.getWallPage();
 
 

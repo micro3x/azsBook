@@ -9,12 +9,14 @@
     </div>
     <div class="controls">
         <ul class="post-controls">
+            <li><a href="" ng-if="canEditPost(post)" ng-click="editPost()">edit</a></li>
+            <li><a href="" ng-if="canEditPost(post)" ng-click="deletePost(post)">delete</a></li>
+            <li><a href="" ng-click="newComment = true">comment</a></li>
             <li>
                 <a href="" ng-click="likePost(post)" ng-if="!post.liked">like</a>
                 <a href="" ng-click="unLikePost(post)" ng-if="post.liked">unlike</a>
                 ({{post.likesCount}})
             </li>
-            <li><a href="" ng-click="newComment = true">comment</a></li>
             <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})</li>
         </ul>
     </div>
