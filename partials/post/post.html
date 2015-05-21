@@ -1,7 +1,10 @@
 <div class="post" ng-init="newComment = false">
     <div>
-        <img ng-src="{{post.author.profileImageData}}" alt="author" class="small-icon-like"/>
-        <span><string>{{post.author.name}} posted:</string></span>
+        <a href="#/user/{{post.author.username}}">
+            <img ng-src="{{post.author.profileImageData}}" alt="author" class="small-icon-like"/>
+            <span><strong>{{post.author.name}}</strong></span>
+        </a>
+        <span> posted:</span>
         <time><sup>{{post.date}}</sup></time>
     </div>
     <div>
@@ -24,7 +27,8 @@
         <form ng-submit="commentPost(post, commentText)">
             <div class="form-group">
                 <label for="commentContent">Enter Your Comment</label>
-                <textarea ng-model="commentText" class="form-control" id="commentContent" placeholder="Your Comment Here!"></textarea>
+                <textarea ng-model="commentText" class="form-control" id="commentContent"
+                          placeholder="Your Comment Here!"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" ng-click="newComment = false">Submit</button>
             <button type="reset" class="btn btn-default" ng-click="newComment = false">Cancel</button>

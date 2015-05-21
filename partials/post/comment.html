@@ -1,7 +1,11 @@
 <div class="post">
     <div>
-        <img ng-src="{{comment.author.profileImageData}}" alt="author" class="small-icon-like"/>
-        <span><string>{{comment.author.name}} posted:</string></span>
+        <a href="#/user/{{comment.author.username}}">
+            <img ng-src="{{comment.author.profileImageData}}" alt="author" class="small-icon-like"/>
+            <span><strong>{{comment.author.name}}</strong></span>
+
+        </a>
+        <span> commented:</span>
         <time><sup>{{comment.date}}</sup></time>
     </div>
     <div>
