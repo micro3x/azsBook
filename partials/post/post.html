@@ -1,6 +1,6 @@
-<div class="post" ng-init="newComment = false">
+<div class="post" ng-init="newComment = false; ">
     <div>
-        <a href="#/user/{{post.author.username}}">
+        <a href="#/user/{{post.author.username}}" ng-mouseenter="showPopup(post.author)">
             <img ng-src="{{post.author.profileImageData}}" alt="author" class="small-icon-like"/>
             <span><strong>{{post.author.name}}</strong></span>
         </a>
@@ -8,11 +8,22 @@
         <time><sup>{{post.date}}</sup></time>
     </div>
     <div>
-        <p>{{post.postContent}}</p>
+        <p ng-if="!post.edit">{{post.postContent}}</p>
+        <div ng-if="post.edit" ng-init="">
+            <form>
+                <div class="form-group">
+                    <label for="postContent">Enter Your Post</label>
+                <textarea ng-model="post.postContent" class="form-control" id="postContent"
+                          placeholder="Your Post Here!"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="editPost(post); post.edit = false">Save</button>
+                <button type="reset" class="btn btn-default" ng-click="post.edit = false">Cancel</button>
+            </form>
+        </div>
     </div>
     <div class="controls">
         <ul class="post-controls">
-            <li><a href="" ng-if="canEditPost(post)" ng-click="editPost()">edit</a></li>
+            <li><a ng-if="canEditPost(post)" ng-click="post.edit = true">edit</a></li>
             <li><a href="" ng-if="canEditPost(post)" ng-click="deletePost(post)">delete</a></li>
             <li><a href="" ng-click="newComment = true">comment</a></li>
             <li>
@@ -20,7 +31,8 @@
                 <a href="" ng-click="unLikePost(post)" ng-if="post.liked">unlike</a>
                 ({{post.likesCount}})
             </li>
-            <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})</li>
+            <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})
+            </li>
         </ul>
     </div>
     <div class="comment-post-controls" ng-show="newComment" ng-init="commentText">

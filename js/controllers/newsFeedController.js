@@ -1,11 +1,11 @@
-app.controller('newsFeedController', function ($scope, $location, $route, security, infoService, user) {
+app.controller('newsFeedController', function ($scope, $location, $route, security, infoService, users) {
 
     var startPost = '';
 
     $scope.feedData = {};
 
     $scope.getNewsFeed = function () {
-        user.getNewsFeed().then(
+        users.getNewsFeed().then(
             function (data) {
                 $scope.feedData = data;
             },

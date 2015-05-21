@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-
-    </body>
-</html>
+<div ng-style="viewstyle" ng-mouseleave="info.pupUp = false" ng-if="info.pupUp">
+    <img ng-src="{{info.profileImageData}}" alt="profile pic" class="small-icon-like"/>
+    <strong>{{info.name}}</strong>
+    <div ng-if="info.isFriend">status: Friends</div>
+    <div ng-if="!info.isFriend">
+        <button ng-if="!info.hasPendingRequest" ng-click="invite(info)">Invite</button>
+        <span ng-if="info.hasPendingRequest">Panding Friend Approval</span>
+    </div>
+</div>

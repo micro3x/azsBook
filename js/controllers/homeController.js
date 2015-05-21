@@ -1,4 +1,4 @@
-app.controller('homeController', function ($scope, $location, $route, security, infoService, user) {
+app.controller('homeController', function ($scope, $location, $route, security, infoService, users) {
 
     if(security.isUserLogged()){
         security.saveUserSession(security.getLoggedUser());
@@ -53,6 +53,7 @@ app.controller('homeController', function ($scope, $location, $route, security, 
             return 'data:image/jpeg;base64,' + imageData;
         }
     }
+
 
 
 });

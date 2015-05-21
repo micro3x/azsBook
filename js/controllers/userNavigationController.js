@@ -1,4 +1,4 @@
-app.controller('userNavigationController', function ($scope, $location, $route, security, infoService, user) {
+app.controller('userNavigationController', function ($scope, $location, $route, security, infoService, users) {
     $scope.user = {};
     $scope.myStyle = {"background": "white"};
     $scope.searchResults = [];
@@ -8,7 +8,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     $scope.friendRequests = [];
     $scope.username = '';
 
-    user.getMyFullInfo().then(
+    users.getMyFullInfo().then(
         function (success) {
             $scope.username = success.username;
             success.coverImageData = $scope.correctImageIfNeeded(success.coverImageData);
@@ -25,7 +25,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     );
 
     function getFriendRequests(){
-        user.getFriendRequests().then(
+        users.getFriendRequests().then(
             function (success) {
                 $scope.hasRequests = success.length > 0;
                 $scope.friendRequests = success;
@@ -39,7 +39,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
 
     $scope.logout = function () {
         security.clearUserSession();
-        user.logout().then(
+        users.logout().then(
             function (success) {
                 $location.path('/');
                 $route.reload();
@@ -55,7 +55,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     $scope.searchUsers = function (element) {
         var queryText = element.value;
         if (queryText) {
-            user.searchUsers(queryText).then(
+            users.searchUsers(queryText).then(
                 function (data) {
                     $scope.isSearching = true;
                     $scope.searchResults = data;
@@ -86,7 +86,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     };
 
     $scope.acceptRequest = function (id) {
-        user.acceptFriendRequest(id).then(
+        users.acceptFriendRequest(id).then(
             function (success) {
                 infoService.success('You have a new Friend');
                 $route.reload();
@@ -98,13 +98,25 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     };
 
     $scope.rejectRequest = function (id) {
-        user.rejectFriendRequest(id).then(
+        users.rejectFriendRequest(id).then(
             function (success) {
                 infoService.success('You Kicked His ASS!');
                 $route.reload();
             },
             function (error) {
                 infoService.error(error.message)
+            }
+        )
+    };
+
+    $scope.inviteAsFriend = function (user) {
+        users.sendFriendRequest(user.username).then(
+            function (success) {
+                infoService.success('Friend Request Sent!');
+                user.hasPendingRequest = true;
+            },
+            function (error) {
+                infoService.error('Friend Request Not Sent!')
             }
         )
     };

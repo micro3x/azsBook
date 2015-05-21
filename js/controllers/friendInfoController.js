@@ -1,10 +1,10 @@
-app.controller('friendInfoController', function ($scope, $routeParams, $location, $route, security, infoService, user) {
+app.controller('friendInfoController', function ($scope, $routeParams, $location, $route, security, infoService, users) {
     $scope.friend = {};
     $scope.friendStyle = {};
     var id = $routeParams.username;
     $scope.username = id;
 
-    user.getUserFullData(id).then(
+    users.getUserFullData(id).then(
         function (success) {
             success.coverImageData = $scope.correctImageIfNeeded(success.coverImageData);
             success.profileImageData = $scope.correctImageIfNeeded(success.profileImageData);
@@ -21,7 +21,7 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
     );
 
     $scope.inviteAsFriend = function () {
-        user.sendFriendRequest($scope.friend.username).then(
+        users.sendFriendRequest($scope.friend.username).then(
             function (success) {
                 infoService.success('Friend Request Sent!')
                 $route.reload();
@@ -33,6 +33,6 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
     };
 
     $scope.viewFriends = function () {
-        $location.path('/user/'+ id +'/friends');
+        $location.path('/users/'+ id +'/friends');
     };
 });

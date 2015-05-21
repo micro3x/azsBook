@@ -1,4 +1,4 @@
-app.factory('user', function ($resource, $http, baseUrl) {
+app.factory('users', function ($resource, $http, baseUrl) {
     var resourceUsers = $resource(
         baseUrl + '/users/:id',
         {id: '@id'},

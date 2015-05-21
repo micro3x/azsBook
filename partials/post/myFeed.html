@@ -1,14 +1,18 @@
 <h1>News Feed</h1>
-<ul ng-controller="wallController">
-    <li ng-repeat="post in feedData">
-        <div class="wallOwner">
-            <span>On </span>
-            <a href="#/user/{{post.wallOwner.username}}">
-                <img ng-src="{{post.wallOwner.profileImageData}}" alt="authorPicture" class="small-icon-like"/>
-                <strong>{{post.wallOwner.name}}'s</strong>
-            </a>
-            <span> Wall</span>
-        </div>
-        <div post></div>
-    </li>
-</ul>
+<div ng-controller="wallController">
+    <ul>
+        <li ng-repeat="post in feedData">
+            <div class="wallOwner">
+                <span>On </span>
+                <a href="#/user/{{post.wallOwner.username}}">
+                    <img ng-src="{{post.wallOwner.profileImageData}}" alt="authorPicture" class="small-icon-like"/>
+                    <strong>{{post.wallOwner.name}}'s</strong>
+                </a>
+                <span> Wall</span>
+            </div>
+            <div post></div>
+        </li>
+    </ul>
+    <fly-box info="flyInfo" viewstyle="popStyle" invite="inviteAsFriend">
+    </fly-box>
+</div>
