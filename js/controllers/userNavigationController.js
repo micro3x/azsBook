@@ -1,4 +1,7 @@
 app.controller('userNavigationController', function ($scope, $location, $route, security, infoService, users) {
+
+    security.validateUserToken();
+
     $scope.user = {};
     $scope.myStyle = {"background": "white"};
     $scope.searchResults = [];
@@ -20,7 +23,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
             getFriendRequests();
         },
         function (error) {
-            console.log(error);
+            infoService.error(error.statusText);
         }
     );
 

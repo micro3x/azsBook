@@ -1,4 +1,4 @@
-app.factory('security', function ($http, $q, baseUrl) {
+app.factory('security', function ($http, $q, $location, baseUrl, users) {
     function login(username, password) {
         var deffer = $q.defer();
         $http.post(baseUrl + '/users/login', {
@@ -21,15 +21,10 @@ app.factory('security', function ($http, $q, baseUrl) {
     function isUserLogged() {
         var currentUser = getLoggedUser();
         if (!currentUser) {
-            currentUser = JSON.parse(localStorage.getItem('loggedUser'));
-            if (currentUser) {
-                login(currentUser.username, currentUser.password);
-                return true;
-            }
             return false;
         }
+        //validateUserToken();
         return true;
-        // todo validate token - get info about me. :)
     }
 
     function register(username, fullName, email, password, repeatedPass) {
@@ -63,8 +58,23 @@ app.factory('security', function ($http, $q, baseUrl) {
     }
 
     function saveUserSession(user) {
+        if ($http.defaults.headers.common['Authorization'] == 'Bearer ' + user.authToken) {
+            return;
+        }
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + user.authToken;
         sessionStorage.setItem('loggedUser', JSON.stringify(user));
+    }
+
+    function validateUserToken() {
+        $http({method: 'GET', url: baseUrl + '/me', head: ''})
+            .success(function (success) {
+                console.log('asd')
+            })
+            .error(function (error) {
+                console.log(error);
+                clearUserSession();
+                $location.path('/');
+            })
     }
 
     return {
@@ -74,6 +84,7 @@ app.factory('security', function ($http, $q, baseUrl) {
         isUserLogged: isUserLogged,
         getLoggedUser: getLoggedUser,
         rememberUser: rememberUser,
-        saveUserSession: saveUserSession
+        saveUserSession: saveUserSession,
+        validateUserToken: validateUserToken
     }
 });

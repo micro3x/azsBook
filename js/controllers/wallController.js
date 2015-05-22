@@ -185,15 +185,15 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         $scope.flyInfo.pupUp = true;
         $scope.popStyle.display = 'block';
         $scope.popStyle.position = 'fixed';
-        $scope.popStyle.top = mouse.y + 'px';
-        $scope.popStyle.left = mouse.x + 'px';
+        $scope.popStyle.top = (mouse.y - 20) + 'px';
+        $scope.popStyle.left = (mouse.x - 20) + 'px';
         $scope.popStyle.background = 'white';
         $scope.popStyle.border = '1px solid black';
         $scope.popStyle.padding = '10px';
     };
 
-    $scope.hideBox = function () {
-        $scope.popStyle = {display: 'none', 'z-index': '10000'};
+    $scope.hidePopup = function (user) {
+        $scope.flyInfo.pupUp = false;
     };
 
     if (username) {

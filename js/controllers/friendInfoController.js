@@ -33,6 +33,6 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
     };
 
     $scope.viewFriends = function () {
-        $location.path('/users/'+ id +'/friends');
+        $location.path('/user/'+ id +'/friends');
     };
 });

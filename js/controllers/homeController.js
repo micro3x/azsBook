@@ -53,7 +53,4 @@ app.controller('homeController', function ($scope, $location, $route, security, 
             return 'data:image/jpeg;base64,' + imageData;
         }
     }
-
-
-
 });
