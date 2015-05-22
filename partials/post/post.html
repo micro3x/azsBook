@@ -1,56 +1,83 @@
-<div class="post" ng-init="newComment = false; ">
-    <div>
-        <a href="#/user/{{post.author.username}}" ng-mouseenter="showPopup(post.author)">
-            <img ng-src="{{post.author.profileImageData}}" alt="author" class="small-icon-like"/>
-            <span><strong>{{post.author.name}}</strong></span>
-        </a>
-        <span> posted:</span>
-        <time><sup>{{post.date}}</sup></time>
-    </div>
-    <div>
-        <p ng-if="!post.edit">{{post.postContent}}</p>
-        <div ng-if="post.edit" ng-init="">
-            <form>
-                <div class="form-group">
-                    <label for="postContent">Enter Your Post</label>
+<!--<div >-->
+<!--<a href="#">-->
+<!--<img class="" src="..." alt="...">-->
+<!--</a>-->
+<!--</div>-->
+<!--<div >-->
+<!--<h4 class="media-heading">Media heading</h4>-->
+<!--...-->
+<!--</div>-->
+<div class="panel panel-default">
+    <div class="panel-body">
+
+
+        <div class="post" ng-init="newComment = false; ">
+
+            <div class="media-left">
+                <time><sup>{{post.date}}</sup></time>
+                <a href="#/user/{{post.author.username}}" ng-mouseenter="showPopup(post.author)">
+                    <img ng-src="{{post.author.profileImageData}}" alt="author" class="media-object"/>
+                    <span><strong>{{post.author.name}}</strong></span>
+                </a>
+            </div>
+
+
+            <div class="media-body">
+                <div>
+                    <p ng-if="!post.edit">{{post.postContent}}</p>
+
+
+                </div>
+
+
+                <div ng-if="post.edit" ng-init="">
+                    <form>
+                        <div class="form-group">
+                            <label for="postContent">Enter Your Post</label>
                 <textarea ng-model="post.postContent" class="form-control" id="postContent"
                           placeholder="Your Post Here!"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="editPost(post); post.edit = false">
+                            Save
+                        </button>
+                        <button type="reset" class="btn btn-default" ng-click="post.edit = false">Cancel</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="editPost(post); post.edit = false">Save</button>
-                <button type="reset" class="btn btn-default" ng-click="post.edit = false">Cancel</button>
-            </form>
-        </div>
-    </div>
-    <div class="controls">
-        <ul class="post-controls">
-            <li><a ng-if="canEditPost(post)" ng-click="post.edit = true">edit</a></li>
-            <li><a href="" ng-if="canEditPost(post)" ng-click="deletePost(post)">delete</a></li>
-            <li><a href="" ng-click="newComment = true">comment</a></li>
-            <li>
-                <a href="" ng-click="likePost(post)" ng-if="!post.liked">like</a>
-                <a href="" ng-click="unLikePost(post)" ng-if="post.liked">unlike</a>
-                ({{post.likesCount}})
-            </li>
-            <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})
-            </li>
-        </ul>
-    </div>
-    <div class="comment-post-controls" ng-show="newComment" ng-init="commentText">
-        <form ng-submit="commentPost(post, commentText)">
-            <div class="form-group">
-                <label for="commentContent">Enter Your Comment</label>
+            </div>
+            <div class="controls">
+                <ul class="post-controls">
+                    <li><a ng-if="canEditPost(post)" ng-click="post.edit = true">edit</a></li>
+                    <li><a href="" ng-if="canEditPost(post)" ng-click="deletePost(post)">delete</a></li>
+                    <li><a href="" ng-click="newComment = true">comment</a></li>
+                    <li>
+                        <a href="" ng-click="likePost(post)" ng-if="!post.liked">like</a>
+                        <a href="" ng-click="unLikePost(post)" ng-if="post.liked">unlike</a>
+                        ({{post.likesCount}})
+                    </li>
+                    <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})
+                    </li>
+                </ul>
+            </div>
+
+            <div class="comment-post-controls" ng-show="newComment" ng-init="commentText">
+                <form ng-submit="commentPost(post, commentText)">
+                    <div class="form-group">
+                        <label for="commentContent">Enter Your Comment</label>
                 <textarea ng-model="commentText" class="form-control" id="commentContent"
                           placeholder="Your Comment Here!"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="newComment = false">Submit</button>
+                    <button type="reset" class="btn btn-default" ng-click="newComment = false">Cancel</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary" ng-click="newComment = false">Submit</button>
-            <button type="reset" class="btn btn-default" ng-click="newComment = false">Cancel</button>
-        </form>
+        </div>
+
+        <div>
+            <ul>
+                <li ng-repeat="comment in post.comments">
+                    <div post-comment></div>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
-<div>
-    <ul>
-        <li ng-repeat="comment in post.comments">
-            <div post-comment></div>
-        </li>
-    </ul>
 </div>

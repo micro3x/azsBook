@@ -1,18 +1,24 @@
-<h1>News Feed</h1>
-<div ng-controller="wallController">
-    <ul>
-        <li ng-repeat="post in feedData">
-            <div class="wallOwner">
-                <span>On </span>
-                <a href="#/user/{{post.wallOwner.username}}">
-                    <img ng-src="{{post.wallOwner.profileImageData}}" alt="authorPicture" class="small-icon-like"/>
-                    <strong>{{post.wallOwner.name}}'s</strong>
-                </a>
-                <span> Wall</span>
-            </div>
-            <div post></div>
-        </li>
-    </ul>
-    <fly-box info="flyInfo" viewstyle="popStyle" invite="inviteAsFriend">
-    </fly-box>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">News Feed</h3>
+    </div>
+    <div class="panel-body">
+        <div ng-controller="wallController">
+            <ul>
+                <li ng-repeat="post in feedData">
+                    <div class="wallOwner">
+                        <span>On </span>
+                        <a href="#/user/{{post.wallOwner.username}}" ng-mouseenter="showPopup(post.wallOwner)">
+                            <img ng-src="{{post.wallOwner.profileImageData}}" alt="authorPicture" class="small-icon-like"/>
+                            <strong>{{post.wallOwner.name}}'s</strong>
+                        </a>
+                        <span> Wall</span>
+                    </div>
+                    <div post></div>
+                </li>
+            </ul>
+            <fly-box info="flyInfo" viewstyle="popStyle" invite="inviteAsFriend">
+            </fly-box>
+        </div>
+    </div>
 </div>

@@ -4,11 +4,11 @@
             <div ng-include="'partials/user/userHeader.html'"></div>
             <div ng-include="'partials/user/friendInfo.html'"></div>
         </header>
-        <div class="col-sm-6" ng-controller="wallController">
+        <div class="col-sm-8" ng-controller="wallController">
             <div ng-include="'partials/post/wall.html'"></div>
         </div>
         <div ng-if="friend.isFriend">
-            <div class="col-sm-3" ng-controller="friendsPreviewController" ng-include="'partials/user/friendsPreview.html'">
+            <div class="col-sm-4" ng-controller="friendsPreviewController" ng-include="'partials/user/friendsPreview.html'">
             </div>
         </div>
     </div>

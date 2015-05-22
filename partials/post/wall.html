@@ -16,13 +16,21 @@
         </form>
     </div>
 </div>
-<div>
-    <ul class="list-unstyled">
-        <li ng-repeat="post in wallData">
-            <div post></div>
-        </li>
-    </ul>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Wall</h3>
+    </div>
+    <div class="panel-body">
+        <div>
+            <ul class="media-list">
+                <li ng-repeat="post in wallData" class="media">
+                    <div post></div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+
 <fly-box info="flyInfo" viewstyle="popStyle">
 
 </fly-box>

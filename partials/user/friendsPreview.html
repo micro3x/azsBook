@@ -1,10 +1,15 @@
-<h1>Friends <a href="" ng-click="viewFriends()">{{friends.length}}</a></h1>
-<ul class="friends-preview-list">
-    <li ng-repeat="friend in friends | limitTo: 6">
-        <a href="#/user/{{friend.username}}">
-            <img ng-src="{{friend.profileImageData}}" alt="no picture"/>
-
-            <div>{{friend.name}}</div>
-        </a>
-    </li>
-</ul>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Friends <a href="" ng-click="viewFriends()">{{friends.length}}</a></h3>
+    </div>
+    <div class="panel-body">
+        <ul class="friends-preview-list">
+            <li ng-repeat="friend in friends | limitTo: 6">
+                <a href="#/user/{{friend.username}}">
+                    <img ng-src="{{friend.profileImageData}}" alt="no picture"/>
+                    <div>{{friend.name}}</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

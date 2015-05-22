@@ -97,7 +97,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
                 post.comments.push(success);
             },
             function (error) {
-                infoService.error(error.message);
+                infoService.error(error.data.message);
             }
         )
     };
@@ -113,7 +113,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
                 })
             },
             function (error) {
-                infoService.error(error.message);
+                infoService.error(error.data.message);
             }
         );
     };
