@@ -18,11 +18,13 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#/" class="glyphicon glyphicon-home"></a></li>
                     <li>
-                        <a href="" class="glyphicon glyphicon-envelope" ng-click="showFriendRequests()"><sub ng-model="hasRequests" ng-if="hasRequests">{{friendRequests.length}}</sub></a>
+                        <a href="" class="glyphicon glyphicon-envelope" ng-click="showFriendRequests()"><sub
+                                ng-model="hasRequests" ng-if="hasRequests">{{friendRequests.length}}</sub></a>
+
                         <div class="requests-data" ng-show="showRequests">
                             <span ng-show="friendRequests.length <= 0">No pending Requests!</span>
                             <ul ng-model="searchResults" class="list-unstyled">
-                                <li ng-repeat="request in friendRequests" >
+                                <li ng-repeat="request in friendRequests">
                                     <div friend-request></div>
                                 </li>
                             </ul>
@@ -36,24 +38,23 @@
                     <li>
                         <button class="btn btn-default navbar-btn glyphicon glyphicon-log-out"
                                 ng-click="logout()"></button>
-
                     </li>
                     <li class="dropdown">
                         <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
+                            <div class="form-group" ng-init="queryString">
                                 <input type="text" id="user-search" class="form-control" placeholder="Search"
-                                       onchange="">
+                                       ng-model="queryString" ng-keyup="searchUsers(queryString)"
+                                       ng-blur="isSearching = false" ng-focus="isSearching = true">
                             </div>
-                            <button type="submit" class="btn btn-default glyphicon glyphicon-search"
-                                    onclick="angular.element(this).scope().searchUsers(document.getElementById('user-search'))"></button>
                         </form>
                         <div ng-show="isSearching" id="search-results" ng-model="searchResults"
-                             class="col-sm-1 col-sm-offset-1">
+                             class="">
                             <ul>
                                 <li ng-repeat="foundUser in searchResults">
                                     <div user-found></div>
                                 </li>
                             </ul>
+
                         </div>
                     </li>
                 </ul>

@@ -17,13 +17,17 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.getWallPage = function () {
         posts.getFriendWallPage(username, null, startPost).then(
             function (data) {
+                $scope.loadingPosts = true;
                 if(data.length > 0) {
                     $scope.wallData = $scope.wallData.concat(data);
                     startPost = data[data.length - 1].id;
                 }
             },
             function (error) {
-                console.log(error);
+                $scope.loadingPosts = true;
+            },
+            function () {
+                $scope.loadingPosts = true;
             }
         )
     };
@@ -195,6 +199,8 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.hidePopup = function (user) {
         $scope.flyInfo.pupUp = false;
     };
+
+    $scope.loadingPosts = true;
 
     if (username) {
         $scope.getWallPage();

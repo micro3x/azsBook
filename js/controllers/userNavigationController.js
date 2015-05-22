@@ -55,8 +55,8 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
         );
     };
 
-    $scope.searchUsers = function (element) {
-        var queryText = element.value;
+    $scope.searchUsers = function (value) {
+        var queryText = value;
         if (queryText) {
             users.searchUsers(queryText).then(
                 function (data) {

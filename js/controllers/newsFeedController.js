@@ -7,6 +7,7 @@ app.controller('newsFeedController', function ($scope, $location, $route, securi
     $scope.getNewsFeed = function () {
         users.getNewsFeed(startPost).then(
             function (data) {
+                $scope.loadingPosts = true;
                 if(data.length > 0) {
                     $scope.feedData = $scope.feedData.concat(data);
                     startPost = data[data.length - 1].id;
@@ -14,6 +15,10 @@ app.controller('newsFeedController', function ($scope, $location, $route, securi
             },
             function (error) {
                 infoService.error(error.message);
+                $scope.loadingPosts = true;
+            },
+            function () {
+                $scope.loadingPosts = true;
             }
         );
     };
@@ -28,7 +33,7 @@ app.controller('newsFeedController', function ($scope, $location, $route, securi
 
         if  ((wintop/(docheight-winheight)) == scrolltrigger) {
             $scope.getNewsFeed();
-            console.log('Getting next')
+            //todo : loading
         }
     });
 

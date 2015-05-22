@@ -68,7 +68,6 @@ app.factory('security', function ($http, $q, $location, baseUrl, users) {
     function validateUserToken() {
         $http({method: 'GET', url: baseUrl + '/me', head: ''})
             .success(function (success) {
-                console.log('asd')
             })
             .error(function (error) {
                 console.log(error);

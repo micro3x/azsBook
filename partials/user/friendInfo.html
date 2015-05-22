@@ -32,7 +32,7 @@
                                 <!--<img src="http://robohash.org/sitsequiquia.png?size=120x120">-->
                                 <button type="button" value="Invite as Friend"
                                         ng-hide="friend.isFriend || friend.hasPendingRequest"
-                                        ng-click="inviteAsFriend()" class="btn btn-primary">Invite as Friend
+                                        ng-click="inviteAsFriend(friend)" class="btn btn-primary">Invite as Friend
                                 </button>
                                 <span ng-show="friend.hasPendingRequest">Pending Approval</span>
                             </div>

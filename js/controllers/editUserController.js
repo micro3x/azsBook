@@ -10,20 +10,13 @@ app.controller('editUserController', function ($scope, $location, $route, securi
     );
 
 
-    $scope.profileImage = '';
-    $scope.backImage = '';
+    //$scope.profileImage = '';
+    //$scope.backImage = '';
 
     $scope.saveProfile = function () {
-        if ($scope.profileImage) {
-            this.user.profileImageData = $scope.profileImage;
-        }
-        if ($scope.backImage) {
-            this.user.coverImageData = $scope.backImage;
-        }
-        users.updateMyInfo(this.user).then(
+        users.updateMyInfo($scope.user).then(
             function (success) {
-                infoService.success('User Profile Saved')
-                $route.reload();
+                infoService.success('User Profile Saved');
             },
             function (error) {
                 infoService.error('User Profile NOT Changed - ' + error.statusText)
@@ -32,7 +25,7 @@ app.controller('editUserController', function ($scope, $location, $route, securi
     };
 
     $scope.avatarChanged = function (element) {
-        convertImage(element.files[0], 'profile');
+        convertImage(element.files[0],  'profile');
     };
 
     $scope.backgroundChanged = function (element) {
@@ -44,9 +37,9 @@ app.controller('editUserController', function ($scope, $location, $route, securi
             var reader = new FileReader();
             reader.onload = function () {
                 if (image == 'profile') {
-                    $scope.profileImage = reader.result;
+                    $scope.user.profileImageData = reader.result;
                 } else {
-                    $scope.backImage = reader.result;
+                    $scope.user.coverImageData = reader.result;
                 }
             };
             reader.readAsDataURL(file);

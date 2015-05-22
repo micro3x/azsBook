@@ -27,6 +27,7 @@
             <p class="help-block">Select a picture less then 128kb</p>
         </div>
         <div class="form-group">
+            <img class="profile-picture" src="{{user.coverImageData}}" alt="profile-picture"/>
             <label for="background">Change Background</label>
             <input type="file" id="background" onchange="angular.element(this).scope().backgroundChanged(this)">
 
