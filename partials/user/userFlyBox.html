@@ -1,11 +1,17 @@
-<div ng-style="viewstyle" ng-mouseleave="info.pupUp = false" ng-mouseover="info.pupUp = true" ng-if="info.pupUp">
-    <a href="#/user/{{info.username}}">
-        <img ng-src="{{info.profileImageData}}" alt="profile pic" class="small-icon-like"/>
-        <strong>{{info.name}}</strong>
-    </a>
-    <div ng-if="info.isFriend">status: Friends</div>
-    <div ng-if="!info.isFriend">
-        <button ng-if="!info.hasPendingRequest" ng-click="invite(info)" class="btn btn-primary">Invite</button>
-        <span ng-if="info.hasPendingRequest">Pending Friend Approval</span>
+<div class="col-sm-3" ng-style="viewstyle" ng-mouseleave="info.pupUp = false" ng-mouseover="info.pupUp = true" ng-if="info.pupUp">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <a href="#/user/{{info.username}}">
+                <img ng-src="{{info.profileImageData}}" alt="profile pic" class="small-icon-like"/>
+                <strong>{{info.name}}</strong>
+            </a>
+        </div>
+        <div class="panel-body">
+            <div ng-if="info.isFriend">status: Friends</div>
+            <div ng-if="!info.isFriend">
+                <button ng-if="!info.hasPendingRequest" ng-click="invite(info)" class="btn btn-primary">Invite</button>
+                <span ng-if="info.hasPendingRequest">Pending Friend Approval</span>
+            </div>
+        </div>
     </div>
 </div>

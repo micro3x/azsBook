@@ -12,7 +12,7 @@
         <div class="post" ng-init="newComment = false; ">
 
             <div class="media-left">
-                <time><sup>{{post.date}}</sup></time>
+                <time><sup>{{formatDate(post.date)}}</sup></time>
                 <a href="#/user/{{post.author.username}}" ng-mouseenter="showPopup(post.author)">
                     <img ng-src="{{post.author.profileImageData}}" alt="author" class="media-object"/>
                     <span><strong>{{post.author.name}}</strong></span>

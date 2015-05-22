@@ -2,7 +2,7 @@
     <div class="panel-body">
         <div class="post media">
             <div class="media-left">
-                <time><sup>{{comment.date}}</sup></time>
+                <time><sup>{{formatDate(comment.date)}}</sup></time>
                 <a href="#/user/{{comment.author.username}}">
                     <img ng-src="{{comment.author.profileImageData}}" alt="author"
                          class="small-icon-like media-object"/>
