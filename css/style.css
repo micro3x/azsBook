@@ -52,3 +52,27 @@
   display: inline-block;
   margin: 0 5px;
 }
+.profile-name {
+  background: rgba(255, 255, 255, 0.8);
+  color: #5c5c5c;
+  border-top-left-radius: 15px ;
+}
+.with-back {
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom-left-radius: 15px;
+  margin-bottom: 15px;
+}
+/* CSS used here will be applied after bootstrap.css */
+body {
+  background-color: #eaeaea;
+}
+img.avatar {
+  border: 1px solid #eee;
+}
+.only-bottom-margin {
+  margin-top: 5px;
+}
+.activity-mini {
+  padding-right: 15px;
+  float: left;
+}

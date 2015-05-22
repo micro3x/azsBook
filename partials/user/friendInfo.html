@@ -1,12 +1,65 @@
-<div class="user-header col-sm-12">
-    <div id="user-data" ng-controller="friendInfoController" ng-style="friendStyle">
-        <ul>
-            <li>fullname : {{friend.name}}</li>
-            <li>username : {{friend.username}}</li>
-            <li>gender : {{friend.gender}}</li>
-            <li>avatar : <img ng-src="{{friend.profileImageData}}" alt="profile-picture" class="profile-picture"/></li>
-        </ul>
-        <button type="button" value="Invite as Friend" ng-hide="friend.isFriend || friend.hasPendingRequest" ng-click="inviteAsFriend()">Invite as Friend</button>
-        <span ng-show="friend.hasPendingRequest">Pending Approval</span>
+<!--<div class="user-header col-sm-12">-->
+
+<!--<ul>-->
+<!--<li>fullname :</li>-->
+<!--<li>username :</li>-->
+<!--<li>gender :</li>-->
+<!--<li>avatar :</li>-->
+<!--</ul>-->
+
+
+<!--</div>-->
+
+
+<br>
+<div id="user-data" ng-controller="friendInfoController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div >
+                        <div class="row">
+                            <div class="col-md-12 lead">User profile
+
+                            </div>
+                        </div>
+                        <div class="row" ng-style="friendStyle">
+                            <hr>
+                            <div class="col-md-4 text-center">
+                                <img ng-src="{{friend.profileImageData}}" alt="profile-picture"
+                                     class="img-circle avatar avatar-original img-responsive" style="-webkit-user-select:none;
+                                      display:block; margin:15px auto;width:150px;height:150px"/>
+                                <!--<img src="http://robohash.org/sitsequiquia.png?size=120x120">-->
+                                <button type="button" value="Invite as Friend"
+                                        ng-hide="friend.isFriend || friend.hasPendingRequest"
+                                        ng-click="inviteAsFriend()" class="btn btn-primary">Invite as Friend
+                                </button>
+                                <span ng-show="friend.hasPendingRequest">Pending Approval</span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row profile-name">
+                                    <div class="col-md-12">
+                                        <h1 class="only-bottom-margin">{{friend.name}}</h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 with-back">
+                                        <span class="text-muted">Username: </span>{{friend.username}}<br>
+                                        <span class="text-muted">Gender: </span>{{friend.gender == 0 ? 'Other': ''}} {{friend.gender == 1 ? 'Male': ''}} {{friend.gender == 2 ? 'Female': ''}}<br>
+                                        <span class="text-muted">Status: </span>{{friend.isFriend ? 'Friends' : 'Not Friends'}}<br/><br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

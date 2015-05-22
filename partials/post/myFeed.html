@@ -4,12 +4,12 @@
     </div>
     <div class="panel-body">
         <div ng-controller="wallController">
-            <ul>
+            <ul class="list-unstyled">
                 <li ng-repeat="post in feedData">
                     <div class="wallOwner">
                         <span>On </span>
                         <a href="#/user/{{post.wallOwner.username}}" ng-mouseenter="showPopup(post.wallOwner)">
-                            <img ng-src="{{post.wallOwner.profileImageData}}" alt="authorPicture" class="small-icon-like"/>
+                            <!--<img ng-src="{{post.wallOwner.profileImageData}}" alt="authorPicture" class="small-icon-like"/>-->
                             <strong>{{post.wallOwner.name}}'s</strong>
                         </a>
                         <span> Wall</span>

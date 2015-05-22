@@ -88,11 +88,16 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
         $scope.showRequests = !$scope.showRequests;
     };
 
-    $scope.acceptRequest = function (id) {
-        users.acceptFriendRequest(id).then(
+    $scope.acceptRequest = function (request) {
+        users.acceptFriendRequest(request.id).then(
             function (success) {
                 infoService.success('You have a new Friend');
-                $route.reload();
+                $scope.friendRequests = $scope.friendRequests.filter(function (r) {
+                    if(r.id != request.id){
+                        return true;
+                    }
+                    return false;
+                });
             },
             function (error) {
                 infoService.error(error.message)
@@ -100,11 +105,16 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
         )
     };
 
-    $scope.rejectRequest = function (id) {
-        users.rejectFriendRequest(id).then(
+    $scope.rejectRequest = function (request) {
+        users.rejectFriendRequest(request.id).then(
             function (success) {
                 infoService.success('You Kicked His ASS!');
-                $route.reload();
+                $scope.friendRequests = $scope.friendRequests.filter(function (r) {
+                    if(r.id != request.id){
+                        return true;
+                    }
+                    return false;
+                });
             },
             function (error) {
                 infoService.error(error.message)

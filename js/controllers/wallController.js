@@ -94,7 +94,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.commentPost = function (post, commentText) {
         posts.newComment(post.id, commentText).then(
             function (success) {
-                post.comments.push(success);
+                post.comments.unshift(success);
             },
             function (error) {
                 infoService.error(error.data.message);

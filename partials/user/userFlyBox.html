@@ -5,7 +5,7 @@
     </a>
     <div ng-if="info.isFriend">status: Friends</div>
     <div ng-if="!info.isFriend">
-        <button ng-if="!info.hasPendingRequest" ng-click="invite(info)">Invite</button>
+        <button ng-if="!info.hasPendingRequest" ng-click="invite(info)" class="btn btn-primary">Invite</button>
         <span ng-if="info.hasPendingRequest">Pending Friend Approval</span>
     </div>
 </div>

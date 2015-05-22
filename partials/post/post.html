@@ -9,8 +9,6 @@
 <!--</div>-->
 <div class="panel panel-default">
     <div class="panel-body">
-
-
         <div class="post" ng-init="newComment = false; ">
 
             <div class="media-left">
@@ -23,12 +21,10 @@
 
 
             <div class="media-body">
+
                 <div>
                     <p ng-if="!post.edit">{{post.postContent}}</p>
-
-
                 </div>
-
 
                 <div ng-if="post.edit" ng-init="">
                     <form>
@@ -43,6 +39,8 @@
                         <button type="reset" class="btn btn-default" ng-click="post.edit = false">Cancel</button>
                     </form>
                 </div>
+
+
             </div>
             <div class="controls">
                 <ul class="post-controls">
@@ -54,11 +52,11 @@
                         <a href="" ng-click="unLikePost(post)" ng-if="post.liked">unlike</a>
                         ({{post.likesCount}})
                     </li>
-                    <li><a href="" ng-click="getPostComments(post);">show all comments</a> ({{post.totalCommentsCount}})
+                    <li><a href="" ng-click="getPostComments(post);">show all comments</a>
+                        ({{post.totalCommentsCount}})
                     </li>
                 </ul>
             </div>
-
             <div class="comment-post-controls" ng-show="newComment" ng-init="commentText">
                 <form ng-submit="commentPost(post, commentText)">
                     <div class="form-group">
@@ -70,14 +68,17 @@
                     <button type="reset" class="btn btn-default" ng-click="newComment = false">Cancel</button>
                 </form>
             </div>
+            <div>
+                <ul class="list-unstyled">
+                    <li ng-repeat="comment in post.comments">
+                        <div post-comment class="col-sm-10 col-sm-offset-2"></div>
+                    </li>
+                </ul>
+            </div>
+
+
         </div>
 
-        <div>
-            <ul>
-                <li ng-repeat="comment in post.comments">
-                    <div post-comment></div>
-                </li>
-            </ul>
-        </div>
+
     </div>
 </div>

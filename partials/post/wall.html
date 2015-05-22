@@ -1,26 +1,28 @@
-<div ng-init="Composing = false; newPostText = ''">
-    <button ng-click="Composing = true" ng-hide="Composing">New Post</button>
-    <div ng-show="Composing">
-        <form ng-submit="newPost(newPostText)">
-            <div>
-                <img ng-src="{{user.profileImageData}}" alt="" class="small-icon-like"/>
-                {{user.username}}
-            </div>
-            <div class="form-group">
-                <label for="postContent">Enter Your Post</label>
-                <textarea ng-model="newPostText" class="form-control" id="postContent"
-                          placeholder="Your Post Here!"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" ng-click="Composing = false">Submit</button>
-            <button type="reset" class="btn btn-default" ng-click="Composing = false">Cancel</button>
-        </form>
-    </div>
-</div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Wall</h3>
+        <span class="panel-title">Wall</span>
+        <button ng-click="Composing = true" ng-hide="Composing" class="btn btn-primary btn-sm">New Post</button>
     </div>
     <div class="panel-body">
+        <div ng-init="Composing = false; newPostText = ''">
+
+            <div ng-show="Composing">
+                <form ng-submit="newPost(newPostText)">
+                    <div>
+                        <img ng-src="{{user.profileImageData}}" alt="" class="small-icon-like"/>
+                        {{user.username}}
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">Enter Your Post</label>
+                <textarea ng-model="newPostText" class="form-control" id="postContent"
+                          placeholder="Your Post Here!"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="Composing = false">Submit</button>
+                    <button type="reset" class="btn btn-default" ng-click="Composing = false">Cancel</button>
+                </form>
+            </div>
+        </div>
         <div>
             <ul class="media-list">
                 <li ng-repeat="post in wallData" class="media">

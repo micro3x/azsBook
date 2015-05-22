@@ -1,25 +1,40 @@
-<div class="post">
-    <div>
-        <a href="#/user/{{comment.author.username}}">
-            <img ng-src="{{comment.author.profileImageData}}" alt="author" class="small-icon-like"/>
-            <span><strong>{{comment.author.name}}</strong></span>
-
-        </a>
-        <span> commented:</span>
-        <time><sup>{{comment.date}}</sup></time>
-    </div>
-    <div>
-        <p>{{comment.commentContent}}</p>
-    </div>
-    <div class="controls">
-        <ul class="post-controls">
-            <li><a href="" ng-if="canEditComment(comment, post)">edit</a></li>
-            <li><a href="" ng-if="canEditComment(comment, post)" ng-click="deleteComment(post, comment)">delete</a></li>
-            <li>
-                <a href="" ng-click="likeComment(post.id, comment)" ng-if="!comment.liked">like</a>
-                <a href="" ng-click="unLikeComment(post.id, comment)" ng-if="comment.liked">unlike</a>
-                ({{comment.likesCount}})
-            </li>
-        </ul>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post media">
+            <div class="media-left">
+                <time><sup>{{comment.date}}</sup></time>
+                <a href="#/user/{{comment.author.username}}">
+                    <img ng-src="{{comment.author.profileImageData}}" alt="author"
+                         class="small-icon-like media-object"/>
+                    <span><strong>{{comment.author.name}}</strong></span>
+                </a>
+            </div>
+            <div class="media-body">
+                <p>{{comment.commentContent}}</p>
+            </div>
+            <div class="controls">
+                <ul class="post-controls">
+                    <li><a href="" ng-if="canEditComment(comment, post)">edit</a></li>
+                    <li><a href="" ng-if="canEditComment(comment, post)"
+                           ng-click="deleteComment(post, comment)">delete</a></li>
+                    <li>
+                        <a href="" ng-click="likeComment(post.id, comment)" ng-if="!comment.liked">like</a>
+                        <a href="" ng-click="unLikeComment(post.id, comment)" ng-if="comment.liked">unlike</a>
+                        ({{comment.likesCount}})
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+<!--<div class="media">-->
+<!--<div class="media-left">-->
+<!--<a href="#">-->
+<!--<img class="media-object" src="..." alt="...">-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="media-body">-->
+<!--<h4 class="media-heading">Media heading</h4>-->
+<!--...-->
+<!--</div>-->
+<!--</div>-->
