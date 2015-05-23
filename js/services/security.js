@@ -1,4 +1,4 @@
-app.factory('security', function ($http, $q, $location, baseUrl, users) {
+app.factory('security', function ($http, $q, $location, $route, baseUrl, users) {
     function login(username, password) {
         var deffer = $q.defer();
         $http.post(baseUrl + '/users/login', {
@@ -23,12 +23,10 @@ app.factory('security', function ($http, $q, $location, baseUrl, users) {
         if (!currentUser) {
             return false;
         }
-        //validateUserToken();
         return true;
     }
 
     function register(username, fullName, email, password, repeatedPass) {
-
         var deffer = $q.defer();
         $http.post(baseUrl + '/users/register', {
             username: username,
@@ -72,6 +70,7 @@ app.factory('security', function ($http, $q, $location, baseUrl, users) {
                 console.log(error);
                 clearUserSession();
                 $location.path('/');
+                $route.reload()
             })
     }
 

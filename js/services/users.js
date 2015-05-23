@@ -77,7 +77,6 @@ app.factory('users', function ($resource, $http, baseUrl) {
         }).$promise;
     }
 
-    //http://softuni-social-network.azurewebsites.net/api/me/requests/John
     function sendFriendRequest(user){
         return resourceMe.save({params: 'requests/' + user},{}).$promise;
     }
@@ -86,7 +85,6 @@ app.factory('users', function ($resource, $http, baseUrl) {
         return resourceMe.query({params: 'requests'},{}).$promise;
     }
 
-    //http://softuni-social-network.azurewebsites.net/api/me/requests/2?status=approved
     function acceptFriendRequest(id){
         return resourceMe.update({params: 'requests/' + id + '?status=approved'},{}).$promise;
     }
@@ -94,7 +92,6 @@ app.factory('users', function ($resource, $http, baseUrl) {
     function rejectFriendRequest(id){
         return resourceMe.update({params: 'requests/' + id + '?status=rejected'},{}).$promise;
     }
-
 
     return {
         logout: logout,

@@ -1,6 +1,8 @@
 app.controller('friendsPreviewController', function ($scope, $location, $route, $routeParams, security, infoService, users) {
-    $scope.friends = [];
+
     var currentUser = $routeParams.username;
+    $scope.friends = [];
+    $scope.searchFriendString = '';
 
     $scope.getFriends = function (username) {
         var getFriends = users.getMyFriends;
@@ -19,8 +21,6 @@ app.controller('friendsPreviewController', function ($scope, $location, $route, 
     };
 
     $scope.getFriends(currentUser);
-
-    $scope.searchFriendString = '';
 
     $scope.searchCompare = function (actual) {
         var regex = new RegExp('.*' + $scope.searchFriendString + '.*', 'i');

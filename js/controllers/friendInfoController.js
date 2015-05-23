@@ -20,18 +20,6 @@ app.controller('friendInfoController', function ($scope, $routeParams, $location
         }
     );
 
-    //$scope.inviteAsFriend = function () {
-    //    users.sendFriendRequest($scope.friend.username).then(
-    //        function (success) {
-    //            infoService.success('Friend Request Sent!')
-    //            $route.reload();
-    //        },
-    //        function (error) {
-    //            infoService.error('Friend Request Not Sent!')
-    //        }
-    //    )
-    //};
-
     $scope.viewFriends = function () {
         $location.path('/user/'+ id +'/friends');
     };

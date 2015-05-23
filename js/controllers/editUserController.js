@@ -9,10 +9,6 @@ app.controller('editUserController', function ($scope, $location, $route, securi
         }
     );
 
-
-    //$scope.profileImage = '';
-    //$scope.backImage = '';
-
     $scope.saveProfile = function () {
         users.updateMyInfo($scope.user).then(
             function (success) {

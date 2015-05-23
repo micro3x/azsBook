@@ -42,7 +42,6 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         return resourcePost.remove({params: '/' + postId + '/comments/' + id + '/likes'}, {}).$promise;
     }
 
-    //http://softuni-social-network.azurewebsites.net/api/posts/26/comments
     function getPostComments(postId) {
         return resourcePost.query({params: '/' + postId + '/comments'}).$promise;
     }

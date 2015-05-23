@@ -1,7 +1,6 @@
 app.controller('newsFeedController', function ($scope, $location, $route, security, infoService, users) {
 
     var startPost = '';
-
     $scope.feedData = [];
 
     $scope.getNewsFeed = function () {
@@ -22,7 +21,6 @@ app.controller('newsFeedController', function ($scope, $location, $route, securi
             }
         );
     };
-
 
     $scope.getNewsFeed();
 

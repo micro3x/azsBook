@@ -2,6 +2,11 @@ app.controller('homeController', function ($scope, $location, $route, security, 
 
     $scope.loginUser = '';
     $scope.loginPass = '';
+    $scope.regUsername = '';
+    $scope.regPassword = '';
+    $scope.regRepPassword = '';
+    $scope.regEmail = '';
+    $scope.regFullName = '';
 
     $scope.login = function () {
         security.login(this.loginUser, this.loginPass).then(
@@ -15,12 +20,6 @@ app.controller('homeController', function ($scope, $location, $route, security, 
             }
         );
     };
-
-    $scope.regUsername = '';
-    $scope.regPassword = '';
-    $scope.regRepPassword = '';
-    $scope.regEmail = '';
-    $scope.regFullName = '';
 
     $scope.register = function () {
         security.register(

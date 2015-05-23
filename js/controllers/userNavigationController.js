@@ -41,7 +41,6 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     }
 
     $scope.logout = function () {
-
         users.logout().then(
             function (success) {
                 security.clearUserSession();

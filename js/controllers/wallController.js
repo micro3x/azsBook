@@ -12,7 +12,9 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.wallData = [];
     var username = $routeParams.username;
     $scope.editMode = false;
+    $scope.flyInfo = {};
     $scope.popStyle = {display: 'none', 'z-index': '10000'};
+    $scope.loadingPosts = true;
 
     $scope.getWallPage = function () {
         posts.getFriendWallPage(username, null, startPost).then(
@@ -181,9 +183,6 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         )
     };
 
-    $scope.flyInfo = {};
-    $scope.popStyle = {display: 'none', 'z-index': '10000'};
-
     $scope.showPopup = function (user) {
         $scope.flyInfo = user;
         $scope.flyInfo.pupUp = true;
@@ -199,8 +198,6 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
     $scope.hidePopup = function (user) {
         $scope.flyInfo.pupUp = false;
     };
-
-    $scope.loadingPosts = true;
 
     if (username) {
         $scope.getWallPage();
