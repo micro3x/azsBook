@@ -44,7 +44,7 @@
                             <div class="form-group" ng-init="queryString">
                                 <input type="text" id="user-search" class="form-control" placeholder="Search"
                                        ng-model="queryString" ng-keyup="searchUsers(queryString)"
-                                       ng-blur="isSearching = false" ng-focus="isSearching = true">
+                                       ng-blur="stopSearching()" ng-focus="isSearching = true">
                             </div>
                         </form>
                         <div ng-show="isSearching" id="search-results" ng-model="searchResults"

@@ -27,7 +27,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
         }
     );
 
-    function getFriendRequests(){
+    function getFriendRequests() {
         users.getFriendRequests().then(
             function (success) {
                 $scope.hasRequests = success.length > 0;
@@ -41,14 +41,17 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
     }
 
     $scope.logout = function () {
-        security.clearUserSession();
+
         users.logout().then(
             function (success) {
+                security.clearUserSession();
+                infoService.success('Logged Out!');
                 $location.path('/');
                 $route.reload();
             },
             function (error) {
-                //infoService.error(error.statusText);
+                security.clearUserSession();
+                infoService.error(error.statusText);
                 $location.path('/');
                 $route.reload();
             }
@@ -68,8 +71,14 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
                 }
             )
         } else {
-           $scope.clearSearch();
+            $scope.clearSearch();
         }
+    };
+
+    $scope.stopSearching = function () {
+        setTimeout(function () {
+            $scope.isSearching = false
+        }, 100)
     };
 
     $scope.clearSearch = function (element) {
@@ -93,7 +102,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
             function (success) {
                 infoService.success('You have a new Friend');
                 $scope.friendRequests = $scope.friendRequests.filter(function (r) {
-                    if(r.id != request.id){
+                    if (r.id != request.id) {
                         return true;
                     }
                     return false;
@@ -110,7 +119,7 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
             function (success) {
                 infoService.success('You Kicked His ASS!');
                 $scope.friendRequests = $scope.friendRequests.filter(function (r) {
-                    if(r.id != request.id){
+                    if (r.id != request.id) {
                         return true;
                     }
                     return false;
@@ -118,18 +127,6 @@ app.controller('userNavigationController', function ($scope, $location, $route, 
             },
             function (error) {
                 infoService.error(error.message)
-            }
-        )
-    };
-
-    $scope.inviteAsFriend = function (user) {
-        users.sendFriendRequest(user.username).then(
-            function (success) {
-                infoService.success('Friend Request Sent!');
-                user.hasPendingRequest = true;
-            },
-            function (error) {
-                infoService.error('Friend Request Not Sent!')
             }
         )
     };

@@ -1,13 +1,15 @@
-<div ng-controller="userNavigationController">
-    <header>
-        <div ng-include="'partials/user/userHeader.html'"></div>
-        <div ng-include="'partials/user/userInfo.html'"></div>
-    </header>
-    <div class="col-sm-8" ng-controller="newsFeedController" ng-include="'partials/post/myFeed.html'">
+<div ng-controller="baseController">
+    <div ng-controller="userNavigationController">
+        <header>
+            <div ng-include="'partials/user/userHeader.html'"></div>
+            <div ng-include="'partials/user/userInfo.html'"></div>
+        </header>
+        <div class="col-sm-8" ng-controller="newsFeedController" ng-include="'partials/post/myFeed.html'">
 
-    </div>
+        </div>
 
-    <div class="col-sm-4" ng-controller="friendsPreviewController" ng-include="'partials/user/friendsPreview.html'">
+        <div class="col-sm-4" ng-controller="friendsPreviewController" ng-include="'partials/user/friendsPreview.html'">
 
+        </div>
     </div>
 </div>

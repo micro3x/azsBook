@@ -1,9 +1,5 @@
 app.controller('homeController', function ($scope, $location, $route, security, infoService, users) {
 
-    if (security.isUserLogged()) {
-        security.saveUserSession(security.getLoggedUser());
-    }
-
     $scope.loginUser = '';
     $scope.loginPass = '';
 
@@ -45,17 +41,5 @@ app.controller('homeController', function ($scope, $location, $route, security, 
     };
 
 
-    $scope.correctImageIfNeeded = function (imageData) {
-        if (imageData) {
-            if (imageData.match(/data:image\/.*/)) {
-                return imageData;
-            }
-            return 'data:image/jpeg;base64,' + imageData;
-        }
-    }
 
-    $scope.formatDate = function (dateString) {
-        var date = new Date(dateString);
-        return $.format.date(date, "dd/MM/yyyy HH:mm:ss");
-    }
 });
