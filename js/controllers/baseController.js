@@ -1,6 +1,9 @@
 app.controller('baseController', function ($scope, $location, $route, security, infoService, users) {
     if (security.isUserLogged()) {
         security.saveUserSession(security.getLoggedUser());
+    } else {
+        $location.path('/');
+        $route.reload();
     }
 
     $scope.correctImageIfNeeded = function (imageData) {
@@ -15,7 +18,7 @@ app.controller('baseController', function ($scope, $location, $route, security, 
     $scope.formatDate = function (dateString) {
         var date = new Date(dateString);
         return $.format.date(date, "dd/MM/yyyy HH:mm:ss");
-    }
+    };
 
     $scope.inviteAsFriend = function (user) {
         users.sendFriendRequest(user.username).then(

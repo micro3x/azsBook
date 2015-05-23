@@ -62,8 +62,12 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         return resourcePost.save({params: ''}, {username: username, postContent: text}).$promise;
     }
 
-    function deleteComment(postId, commentId){
+    function deleteComment(postId, commentId) {
         return resourcePost.remove({params: '/' + postId + '/comments/' + commentId}, {}).$promise;
+    }
+
+    function editComment(postId, commentId, commentText) {
+        return resourcePost.update({params: '/' + postId + '/comments/' + commentId}, {commentContent: commentText}).$promise;
     }
 
     return {
@@ -77,7 +81,8 @@ app.factory('posts', function ($resource, $http, baseUrl) {
         deletePost: deletePost,
         editPost: editPost,
         newPost: newPost,
-        deleteComment:deleteComment
+        deleteComment: deleteComment,
+        editComment: editComment
     }
 
 });

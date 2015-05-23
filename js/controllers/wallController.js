@@ -124,6 +124,17 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
         );
     };
 
+    $scope.editComment = function (post, comment) {
+        posts.editComment(post.id, comment.id, comment.commentContent).then(
+            function (success) {
+                infoService.success('Comment Saved');
+            },
+            function (error) {
+                infoService.error(error.data.message);
+            }
+        );
+    };
+
     $scope.canEditPost = function (post) {
         if (post.author.username == $scope.user.username) {
             return true;

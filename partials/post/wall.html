@@ -17,7 +17,7 @@
                 <textarea ng-model="newPostText" class="form-control" id="postContent"
                           placeholder="Your Post Here!"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" ng-click="Composing = false">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-click="Composing = false; newPostText = ''">Submit</button>
                     <button type="reset" class="btn btn-default" ng-click="Composing = false">Cancel</button>
                 </form>
             </div>
