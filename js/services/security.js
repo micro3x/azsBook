@@ -28,7 +28,7 @@ app.factory('security', function ($http, $q, $location, baseUrl, users) {
     }
 
     function register(username, fullName, email, password, repeatedPass) {
-        // todo implement registration
+
         var deffer = $q.defer();
         $http.post(baseUrl + '/users/register', {
             username: username,
@@ -50,7 +50,6 @@ app.factory('security', function ($http, $q, $location, baseUrl, users) {
         if (strUser) {
             return JSON.parse(strUser);
         }
-        // todo read from session storage
     }
 
     function rememberUser(user) {

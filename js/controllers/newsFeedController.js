@@ -33,7 +33,6 @@ app.controller('newsFeedController', function ($scope, $location, $route, securi
 
         if  ((wintop/(docheight-winheight)) == scrolltrigger) {
             $scope.getNewsFeed();
-            //todo : loading
         }
     });
 
