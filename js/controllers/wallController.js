@@ -42,7 +42,7 @@ app.controller('wallController', function ($scope, posts, $routeParams, $locatio
                 post.likesCount = post.likesCount + 1;
             },
             function (error) {
-                infoService.error(error.message);
+                infoService.error(error.data.message);
             }
         )
     };
